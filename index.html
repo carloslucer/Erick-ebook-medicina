@@ -4,25 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Método LOCAR</title>
-<meta name="description" content="Método de estudio para Patología con el Robbins y la IA: qué estudiar, qué marcar y qué te va a preguntar el profesor.">
+<meta name="description" content="Método de estudio para Patología con el Robbins y la IA: sabé qué estudiar, reconocé los preparados y llegá al parcialito habiéndote evaluado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: una sola columna de lectura (como una guía de laboratorio), con "preparados" interactivos que rompen la grilla. */
+/* Layout: landing de venta en una columna, con un "preparado" como portada y una vista previa bloqueada del contenido. */
 :root {
   --bg: #f6f4f8;          /* vidrio del portaobjetos */
   --surface: #ffffff;
-  --ink: #221b2e;         /* tinta */
+  --ink: #221b2e;
   --muted: #625a70;
   --line: #ddd6e6;
-  --hema: #4b2a8a;        /* hematoxilina: núcleos, acento principal */
+  --hema: #4b2a8a;        /* hematoxilina: acento principal */
   --hema-soft: #ebe4f7;
-  --eosin: #d9467a;       /* eosina: citoplasma, alertas */
+  --eosin: #d9467a;       /* eosina: alertas y etiquetas */
   --eosin-soft: #fbe3ec;
   --mark: #fff07a;        /* resaltador */
   --mark-ink: #221b2e;
-  --postit: #ffd966;
+  --skel: #e7e1ee;
   --pending: #b45309;
   --pending-soft: #fdf0dc;
 
@@ -30,7 +30,7 @@
   --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --s-1: .5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.5rem; --s-5: 4rem; --s-6: 6rem;
+  --s-1: .5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.5rem; --s-5: 4rem;
   --r: 10px;
   --w: 72rem;
   --read: 42rem;
@@ -39,7 +39,7 @@
   :root:not([data-theme="light"]) {
     --bg: #15111c; --surface: #1e1828; --ink: #efeaf6; --muted: #aaa1b8; --line: #352c44;
     --hema: #b9a0f0; --hema-soft: #2b2140; --eosin: #f17aa3; --eosin-soft: #3a1c2a;
-    --mark: #e8d64a; --mark-ink: #1a1522; --postit: #e9c24f;
+    --mark: #e8d64a; --mark-ink: #1a1522; --skel: #2f2740;
     --pending: #f5b056; --pending-soft: #33240f;
     color-scheme: dark;
   }
@@ -47,14 +47,14 @@
 :root[data-theme="dark"] {
   --bg: #15111c; --surface: #1e1828; --ink: #efeaf6; --muted: #aaa1b8; --line: #352c44;
   --hema: #b9a0f0; --hema-soft: #2b2140; --eosin: #f17aa3; --eosin-soft: #3a1c2a;
-  --mark: #e8d64a; --mark-ink: #1a1522; --postit: #e9c24f;
+  --mark: #e8d64a; --mark-ink: #1a1522; --skel: #2f2740;
   --pending: #f5b056; --pending-soft: #33240f;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
 body {
   margin: 0; background: var(--bg); color: var(--ink);
   font: 400 1.0625rem/1.65 var(--f-body);
@@ -69,21 +69,20 @@ a { color: var(--hema); }
 h1, h2, h3 { font-family: var(--f-display); line-height: 1.08; text-wrap: balance; margin: 0; letter-spacing: -.01em; }
 h1 { font-size: clamp(2.4rem, 6.5vw, 4.6rem); font-weight: 800; }
 h2 { font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 800; }
-h3 { font-size: 1.25rem; font-weight: 700; }
+h3 { font-size: 1.2rem; font-weight: 700; }
 p { margin: 0; }
 .eyebrow { font: 600 .78rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--eosin); }
 .lead { font-size: 1.2rem; color: var(--muted); }
 .stack { display: flex; flex-direction: column; gap: var(--s-2); }
 .stack-lg { display: flex; flex-direction: column; gap: var(--s-3); }
 
-/* Marcaje del método: la jerarquía es el recurso visual de toda la página */
+/* Resaltador y subrayado: el gesto del método, usado solo en titulares */
 .sub { text-decoration: underline; text-decoration-color: var(--hema); text-decoration-thickness: .12em; text-underline-offset: .18em; }
-.res { background: linear-gradient(transparent 12%, var(--mark) 12%, var(--mark) 88%, transparent 88%); color: var(--mark-ink); padding-inline: .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .max { background: linear-gradient(transparent 12%, var(--mark) 12%, var(--mark) 88%, transparent 88%); color: var(--mark-ink); padding-inline: .12em; text-decoration: underline; text-decoration-color: var(--eosin); text-decoration-thickness: .14em; text-underline-offset: .16em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 
-/* Pendientes: lo que todavía tienen que definir */
-.pend { display: inline-flex; align-items: center; gap: .4em; font: 600 .72rem/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--pending); background: var(--pending-soft); border: 1px dashed var(--pending); border-radius: 999px; padding: .3em .75em; }
-.pend-box { border: 2px dashed var(--pending); background: var(--pending-soft); border-radius: var(--r); padding: var(--s-3); color: var(--ink); }
+/* Pendientes: lo que todavía hay que definir */
+.pend { display: inline-flex; align-items: center; gap: .4em; font: 600 .72rem/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--pending); background: var(--pending-soft); border: 1px dashed var(--pending); border-radius: 999px; padding: .3em .75em; align-self: flex-start; }
+.pend-box { border: 2px dashed var(--pending); background: var(--pending-soft); border-radius: var(--r); padding: var(--s-3); }
 
 /* Nav */
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); margin-inline: -16px; padding: .75rem 16px; }
@@ -99,13 +98,12 @@ section { padding-block: var(--s-5); }
 section + section { border-top: 1px solid var(--line); }
 
 /* Hero */
-.hero { padding-block: var(--s-5) var(--s-5); }
 .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: var(--s-4); align-items: center; }
 .hero-grid > * { min-width: 0; }
-.hero .ctas { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; }
-.hero .note { font-size: .9rem; color: var(--muted); }
+.ctas { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; }
+.note { font-size: .9rem; color: var(--muted); }
 
-/* "Portaobjetos" del hero: la portada del ebook como un preparado */
+/* Portada como un portaobjetos */
 .slide { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--hema) 45%, transparent); aspect-ratio: 3 / 4; max-width: 100%; padding: var(--s-3); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
 .slide canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .9; }
 .slide .label { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: var(--s-2); }
@@ -114,102 +112,72 @@ section + section { border-top: 1px solid var(--line); }
 .slide .tag { position: relative; align-self: flex-end; font: 600 .72rem/1 var(--f-mono); background: var(--eosin); color: #fff; padding: .45em .7em; border-radius: 4px; letter-spacing: .06em; }
 
 /* Dolor */
-.pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-2); }
+.pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-2); padding: 0; margin: 0; }
 .pains li { list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-2) var(--s-3); }
-.pains { padding: 0; margin: 0; }
 
-/* Pasos */
-.steps { counter-reset: paso; display: grid; gap: 0; padding: 0; margin: 0; }
-.steps li { list-style: none; counter-increment: paso; display: grid; grid-template-columns: 4.5rem 1fr; gap: var(--s-2); padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
-.steps li > div { min-width: 0; }
-.steps li::before { content: counter(paso, decimal-leading-zero); font: 800 2.4rem/1 var(--f-display); color: var(--hema); }
-.steps .k { font: 600 .75rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
-.phase { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
-.phase > * { min-width: 0; }
+/* Resultados */
+.wins { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4) var(--s-4); padding: 0; margin: 0; }
+.wins li { list-style: none; display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--s-2); }
+.wins li > div { min-width: 0; display: flex; flex-direction: column; gap: .4rem; }
+.wins .dot { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: radial-gradient(circle at 40% 40%, var(--hema) 0 32%, var(--eosin-soft) 34%); border: 1px solid var(--line); }
+.wins p { color: var(--muted); }
 
-/* Leyenda de marcaje */
-.legend { display: grid; gap: var(--s-1); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-3); }
-.legend div { display: grid; grid-template-columns: 9rem 1fr; gap: var(--s-2); align-items: baseline; }
-.legend small { color: var(--muted); }
+/* Fases */
+.phases { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); }
+.phase { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-3); display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; }
+.phase .k { font: 600 .75rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.phase p { color: var(--muted); }
 
-/* Guía high-yield de ejemplo */
-.hy { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); }
-.hy article { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-3); display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; }
-.hy .ico { font: 700 .78rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; }
-.hy .v .ico { color: var(--hema); }
-.hy .f { border-color: var(--eosin); }
-.hy .f .ico { color: var(--eosin); }
-.hy .t .ico { color: var(--pending); }
-
-/* Guía autoevaluable con post-its */
-.back { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-3); display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-2); }
-.back > * { min-width: 0; }
-.field { position: relative; border: 1px solid var(--line); border-radius: 6px; padding: var(--s-2); min-height: 9rem; }
-.field h4 { margin: 0 0 .35rem; font: 700 .8rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--hema); }
-.field p, .field ul { font-size: .95rem; margin: 0; }
-.field ul { padding-left: 1.1rem; }
-.postit { position: absolute; inset: 0; border: 0; border-radius: 6px; background: var(--postit); color: #2a2205; font: 700 1.05rem/1.2 var(--f-display); cursor: pointer; display: grid; place-items: center; box-shadow: 0 6px 14px -8px rgba(0,0,0,.45); transform: rotate(-1deg); transition: transform .25s ease, opacity .25s ease; }
-.postit small { display: block; font: 400 .75rem/1.2 var(--f-body); opacity: .75; margin-top: .3rem; }
-.postit:nth-of-type(odd) { transform: rotate(1deg); }
-.field.open .postit { opacity: 0; transform: translateY(-14px) rotate(-6deg); pointer-events: none; }
-.back-actions { display: flex; gap: var(--s-1); flex-wrap: wrap; }
-
-/* Prompts */
-.prompts { display: grid; gap: var(--s-2); }
-.prompt { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
-.prompt header { display: flex; justify-content: space-between; align-items: center; gap: var(--s-2); padding: .75rem var(--s-2); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
-.prompt header b { font-family: var(--f-display); }
-.prompt pre { margin: 0; padding: var(--s-2); font: 400 .88rem/1.6 var(--f-mono); white-space: pre-wrap; word-break: break-word; color: var(--ink); background: var(--hema-soft); }
-.copy { font: 600 .8rem/1 var(--f-mono); border: 1px solid var(--hema); color: var(--hema); background: transparent; border-radius: 999px; padding: .5em .9em; cursor: pointer; }
-
-/* Cronograma */
-.week { display: grid; grid-template-columns: repeat(7, minmax(7.5rem, 1fr)); gap: var(--s-1); }
-.scroll-x { overflow-x: auto; padding-bottom: .5rem; }
-.day { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .85rem; display: flex; flex-direction: column; gap: .35rem; font-size: .9rem; }
-.day b { font: 700 .78rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-.day .chip { font: 600 .72rem/1.2 var(--f-mono); border-radius: 4px; padding: .25em .45em; background: var(--hema-soft); color: var(--hema); align-self: flex-start; }
-.day.exam { border-color: var(--eosin); background: var(--eosin-soft); }
-.day.exam .chip { background: var(--eosin); color: #fff; }
+/* Vista previa bloqueada */
+.preview { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: var(--s-3); display: grid; gap: var(--s-2); overflow: hidden; }
+.preview-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; }
+.preview-head b { font: 800 1.3rem/1.1 var(--f-display); }
+.preview-head small { font: 600 .75rem/1 var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); }
+.col { border: 1px solid var(--line); border-radius: 8px; padding: var(--s-2); display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+.col .ico { font: 700 .8rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; }
+.col.v .ico { color: var(--hema); }
+.col.f .ico { color: var(--eosin); }
+.col.t .ico { color: var(--pending); }
+.bar { height: .7rem; border-radius: 4px; background: var(--skel); }
+.bar.hl { background: color-mix(in srgb, var(--mark) 70%, var(--skel)); }
+.lock { position: absolute; inset: auto 0 0 0; height: 62%; background: linear-gradient(transparent, var(--surface) 55%); display: flex; align-items: flex-end; justify-content: center; padding: var(--s-3); }
+.lock span { font: 700 .95rem/1.2 var(--f-display); background: var(--ink); color: var(--bg); border-radius: 999px; padding: .7em 1.2em; }
 
 /* Incluye */
 .incl { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); padding: 0; margin: 0; }
 .incl li { list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-3); display: flex; flex-direction: column; gap: var(--s-1); }
 .incl .tipo { font: 600 .72rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
 .incl .core { border: 2px solid var(--hema); }
-
-/* Preguntas 1er parcial */
-details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-2) var(--s-3); }
-details + details { margin-top: var(--s-1); }
-summary { cursor: pointer; font-weight: 700; font-family: var(--f-display); font-size: 1.05rem; }
-details[open] summary { margin-bottom: var(--s-1); }
-details p, details ul { color: var(--ink); }
-details ul { margin: 0; padding-left: 1.2rem; }
+.incl p { color: var(--muted); }
 
 /* Autor, testimonios, precio */
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); align-items: start; }
 .duo > * { min-width: 0; }
-.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); }
 .quote { background: var(--surface); border: 1px dashed var(--pending); border-radius: var(--r); padding: var(--s-3); display: flex; flex-direction: column; gap: var(--s-1); }
 .quote p { font-style: italic; }
 .quote small { color: var(--muted); }
 .price { background: var(--surface); border: 2px solid var(--hema); border-radius: 16px; padding: var(--s-4); display: grid; gap: var(--s-2); max-width: 34rem; margin-inline: auto; text-align: center; }
 .price .amt { font: 800 clamp(2.6rem, 8vw, 3.6rem)/1 var(--f-display); color: var(--hema); font-variant-numeric: tabular-nums; }
+.price .amt small { font-size: .4em; color: var(--muted); }
 .price ul { text-align: left; margin: 0; padding-left: 1.2rem; }
+.price .pend { justify-self: center; align-self: center; }
+
+details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-2) var(--s-3); }
+details + details { margin-top: var(--s-1); }
+summary { cursor: pointer; font-weight: 700; font-family: var(--f-display); font-size: 1.05rem; }
+details[open] summary { margin-bottom: var(--s-1); }
+
 .disclaimer { font-size: .85rem; color: var(--muted); }
 footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
 
-.toast { position: fixed; left: 50%; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: .7em 1.2em; border-radius: 999px; font: 600 .9rem/1 var(--f-mono); z-index: 20; }
-
 @media (max-width: 860px) {
-  .hero-grid, .phase, .duo { grid-template-columns: 1fr; }
+  .hero-grid, .duo, .phases { grid-template-columns: 1fr; }
   .slide { max-width: 22rem; }
-  .hy, .incl, .quotes { grid-template-columns: 1fr; }
+  .incl, .cols { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .pains, .back { grid-template-columns: 1fr; }
-  .steps li { grid-template-columns: 3rem 1fr; }
-  .steps li::before { font-size: 1.8rem; }
-  .legend div { grid-template-columns: 1fr; gap: .2rem; }
+  .pains, .wins { grid-template-columns: 1fr; }
   .nav .btn { display: none; }
 }
 </style>
@@ -226,17 +194,17 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
 <main id="top">
 
 <!-- HERO -->
-<section class="hero">
+<section>
   <div class="wrap hero-grid">
     <div class="stack-lg">
       <span class="eyebrow">Método de estudio · Patología</span>
       <h1>Aprobá Patología estudiando del Robbins <span class="max">con un método</span>, no a ciegas.</h1>
-      <p class="lead">Un sistema de <span class="res">5 pasos</span> con IA que te dice <span class="sub">qué estudiar</span>, <span class="sub">qué marcar</span> y <span class="sub">qué te va a preguntar el profesor</span> en cada parcialito y en el laboratorio.</p>
+      <p class="lead">El sistema paso a paso, con IA, para saber <span class="sub">qué estudiar</span>, reconocer los preparados en el laboratorio y llegar a cada parcialito sabiendo qué te van a preguntar.</p>
       <div class="ctas">
         <a class="btn" href="#comprar">Quiero el Método LOCAR · $19.000</a>
-        <a class="btn ghost" href="#ejemplo">Ver un ejemplo real</a>
+        <a class="btn ghost" href="#incluye">Ver qué incluye</a>
       </div>
-      <p class="note">Ebook en PDF + pack de prompts + bonus. Acceso inmediato. <span class="pend">Pendiente: formato de entrega</span></p>
+      <p class="note">Ebook en PDF + bonus. Lo recibís al instante.</p>
     </div>
     <div class="slide" aria-label="Portada del ebook Método LOCAR">
       <canvas id="tissue" aria-hidden="true"></canvas>
@@ -260,148 +228,52 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
       <li>En el laboratorio mirás el preparado y no reconocés la lesión.</li>
       <li>Le preguntás a la IA y te devuelve un resumen genérico que no sirve para tu cátedra.</li>
     </ul>
-    <p class="lead read">LOCAR ordena el estudio en dos fases. En la cursada filtrás lo que importa y lo fijás con autoevaluación. En los parciales de patología especial convertís tus guías de laboratorio en un examen que te tomás vos.</p>
   </div>
 </section>
 
-<!-- MÉTODO -->
+<!-- RESULTADOS -->
+<section>
+  <div class="wrap stack-lg">
+    <span class="eyebrow">Con el Método LOCAR</span>
+    <h2>Dejás de estudiar todo y empezás a estudiar lo que se toma</h2>
+    <ul class="wins">
+      <li><span class="dot" aria-hidden="true"></span><div><h3>Sabés qué estudiar y qué no</h3><p>Filtrás cada capítulo según lo que da tu cátedra, así no perdés horas en temas que no se toman.</p></div></li>
+      <li><span class="dot" aria-hidden="true"></span><div><h3>Reconocés los preparados</h3><p>Llegás al laboratorio sabiendo qué buscar en el microscopio para identificar cada lesión.</p></div></li>
+      <li><span class="dot" aria-hidden="true"></span><div><h3>Te anticipás al profesor</h3><p>Sabés qué errores te reprueban y qué preguntas usan para confundirte.</p></div></li>
+      <li><span class="dot" aria-hidden="true"></span><div><h3>Usás la IA a tu favor</h3><p>La IA te toma examen sobre lo que vos estudiaste, no te da un resumen genérico de internet.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA (alto nivel) -->
 <section id="metodo">
   <div class="wrap stack-lg">
-    <span class="eyebrow">El método</span>
-    <h2>Cinco pasos para cada tema de la cursada</h2>
-    <div class="phase">
-      <ol class="steps">
-        <li><div class="stack"><span class="k">Contexto mínimo</span><h3>Marcaje inicial</h3><p>Marcás en el Robbins lo que se vio en la teoría y, de otra forma, lo que aparece en la guía de laboratorio. Lo que queda <span class="max">doblemente marcado</span> es prioridad máxima. Lo que no está marcado no se estudia.</p></div></li>
-        <li><div class="stack"><span class="k">Contexto máximo</span><h3>Cuadros de “Conceptos clave”</h3><p>Estudiás todos los cuadros azules del capítulo, entren o no en la teoría. Les sacás foto y le pedís a la IA que te arme cuestionarios.</p></div></li>
-        <li><div class="stack"><span class="k">Estudio y marcaje</span><h3>Estudiar y jerarquizar</h3><p>Estudiás lo marcado en el paso 1 y aplicás la jerarquía de marcaje. Si hay un TP, lo hacés en paralelo: te dice qué es lo más importante del tema.</p></div></li>
-        <li><div class="stack"><span class="k">Guía high-yield</span><h3>Clave visual, error fatal y trampa</h3><p>Para cada preparado de la guía de laboratorio, la IA te arma la clave visual 👀, el error fatal 🚫 y la trampa del profesor ⚠️. Lo anotás junto a la microfotografía.</p></div></li>
-        <li><div class="stack"><span class="k">Autoevaluación</span><h3>Pre-parcialito</h3><p>Sacás fotos de todo lo que marcaste y la IA te arma un cuestionario interactivo que respeta tu jerarquía de prioridades.</p></div></li>
-      </ol>
-      <div class="stack-lg">
-        <div class="legend" aria-label="Jerarquía del marcaje">
-          <span class="eyebrow">Jerarquía del marcaje</span>
-          <div><span class="max">Resaltado + subrayado</span><small>Prioridad máxima: muy importante</small></div>
-          <div><span class="res">Resaltado</span><small>Intermedio: importante</small></div>
-          <div><span class="sub">Subrayado</span><small>Menor: relevante</small></div>
-          <div><span style="font-style:italic;color:var(--muted)">Nota en lapicera</span><small>Lo que completás vos al margen</small></div>
-        </div>
-        <div class="stack">
-          <h3>Antes de empezar la cursada</h3>
-          <ul style="margin:0;padding-left:1.2rem">
-            <li>Repasá la histología normal, sobre todo de <b>hígado, riñón y pulmón</b>. No vas a reconocer lo patológico si no sabés cómo se ve lo sano.</li>
-            <li>Investigá la especialidad de Anatomía Patológica: áreas de trabajo y quiénes la componen.</li>
-          </ul>
-        </div>
-        <div class="stack">
-          <h3>Qué necesitás</h3>
-          <ul style="margin:0;padding-left:1.2rem">
-            <li><i>Patología estructural y funcional</i> de Robbins y Cotran en papel, para poder marcar.</li>
-            <li>Las guías de laboratorio de tu cátedra, impresas a color y <b>simple faz</b>.</li>
-            <li>Una IA de tu elección (ChatGPT, Gemini, Claude…). Te enseñamos a usarla con los prompts del método.</li>
-          </ul>
-        </div>
+    <span class="eyebrow">Cómo funciona</span>
+    <h2>Un método para toda la materia, en dos fases</h2>
+    <div class="phases">
+      <div class="phase">
+        <span class="k">Fase 1 · Cursada</span>
+        <h3>Para los parcialitos</h3>
+        <p>Cinco pasos por tema, desde la primera lectura del Robbins hasta un simulacro de parcialito con IA.</p>
+      </div>
+      <div class="phase">
+        <span class="k">Fase 2 · Patología especial</span>
+        <h3>Para los parciales de laboratorio</h3>
+        <p>Convertís tus guías de laboratorio en un examen que te tomás vos mismo, preparado por preparado.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- EJEMPLO RESUELTO -->
-<section id="ejemplo">
-  <div class="wrap stack-lg">
-    <span class="eyebrow">Ejemplo resuelto · Hígado</span>
-    <h2>Así queda una guía high-yield: Cirrosis hepática</h2>
-    <p class="lead read">Este es el resultado del paso 4 para un preparado de laboratorio. Va escrito al lado de la microfotografía, en la cara de adelante de la guía.</p>
-    <div class="hy">
-      <article class="v">
-        <span class="ico">👀 Clave visual</span>
-        <p><span class="max">Nódulos de regeneración</span> rodeados por <span class="res">tabiques fibrosos</span> que unen espacios porta entre sí y con las venas centrales.</p>
-        <p>Se pierde la arquitectura lobulillar normal, y el compromiso es <span class="sub">difuso</span>, de todo el hígado.</p>
-        <p><b>Figurita difícil:</b> con tricrómico de Masson los tabiques se ven azules. Si es de origen alcohólico, buscá cuerpos de Mallory-Denk.</p>
-      </article>
-      <article class="f">
-        <span class="ico">🚫 Error fatal</span>
-        <p>Llamar “lobulillos” a los nódulos de regeneración, o decir que son nódulos neoplásicos.</p>
-        <p>Los nódulos <span class="max">no tienen la organización lobulillar</span>: no hay una vena central en el medio.</p>
-      </article>
-      <article class="t">
-        <span class="ico">⚠️ Trampa del profesor</span>
-        <p>“¿Cuál es la causa de esta cirrosis?”</p>
-        <p>En el preparado ves un <span class="res">patrón final común</span>, no una etiología. Alcohol, virus B y C, hígado graso metabólico, hemocromatosis o Wilson pueden terminar igual. Solo algunos hallazgos orientan la causa.</p>
-      </article>
-    </div>
-
-    <div class="stack" style="margin-top:var(--s-3)">
-      <h3>Y así queda la cara de atrás: tu guía autoevaluable</h3>
-      <p class="read" style="color:var(--muted)">Para los parciales de patología especial, cada campo va tapado con una nota adhesiva. Intentá responder antes de levantarla. Tocá cada post-it para probar.</p>
-    </div>
-    <div class="back" id="back">
-      <div class="field"><h4>Concepto</h4><p>Proceso difuso y en general irreversible: fibrosis en tabiques que convierte la arquitectura hepática normal en nódulos de regeneración.</p><button class="postit" type="button">Concepto<small>tocá para levantar</small></button></div>
-      <div class="field"><h4>Etiología</h4><ul><li>Alcohol</li><li>Hepatitis virales crónicas (VHB, VHC)</li><li>Hígado graso metabólico (MASLD)</li><li>Biliar, hemocromatosis, Wilson, déficit de α1-antitripsina</li></ul><button class="postit" type="button">Etiología<small>tocá para levantar</small></button></div>
-      <div class="field"><h4>Clasificación</h4><ul><li>Micronodular (nódulos &lt; 3 mm)</li><li>Macronodular (&gt; 3 mm)</li><li>Mixta</li><li>Clínica: Child-Pugh</li></ul><button class="postit" type="button">Clasificación<small>tocá para levantar</small></button></div>
-      <div class="field"><h4>Patogenia</h4><p>La lesión crónica activa las células estrelladas (de Ito), que pasan a miofibroblastos y depositan colágeno I y III en el espacio de Disse. Los sinusoides se capilarizan y aumenta la resistencia vascular.</p><button class="postit" type="button">Patogenia<small>tocá para levantar</small></button></div>
-      <div class="field"><h4>Morfología</h4><p><b>Macro:</b> hígado pequeño, duro, de superficie nodular.<br><b>Micro:</b> nódulos de regeneración más tabiques fibrosos, con pérdida de la arquitectura.</p><button class="postit" type="button">Morfología<small>macro y micro</small></button></div>
-      <div class="field"><h4>Clínica</h4><p><b>Hipertensión portal:</b> ascitis, várices esofágicas, esplenomegalia, cabeza de medusa. <b>Insuficiencia hepática:</b> ictericia, encefalopatía, coagulopatía, arañas vasculares. <b>Complicaciones:</b> carcinoma hepatocelular, síndrome hepatorrenal, peritonitis bacteriana espontánea.</p><button class="postit" type="button">Clínica<small>evolución y complicaciones</small></button></div>
-    </div>
-    <div class="back-actions">
-      <button class="btn sm ghost" type="button" id="reveal-all">Levantar todos</button>
-      <button class="btn sm ghost" type="button" id="cover-all">Volver a tapar</button>
-    </div>
-  </div>
-</section>
-
-<!-- PROMPTS -->
-<section id="prompts">
-  <div class="wrap stack-lg">
-    <span class="eyebrow">Pack de prompts</span>
-    <h2>Los prompts del método, listos para copiar</h2>
-    <p class="lead read">Los tres prompts que hacen el trabajo pesado. En el ebook están explicados paso a paso, con ejemplos de lo que tiene que devolverte la IA.</p>
-    <div class="prompts">
-      <div class="prompt">
-        <header><b>Paso 4 · Guía high-yield</b><button class="copy" type="button" data-copy="p1">Copiar</button></header>
-        <pre id="p1">Necesito guías high-yield de preparados histológicos de patología. Para cada lesión necesito la clave visual 👀, el error fatal 🚫 y la trampa del profesor ⚠️:
-
-- Clave visual: hallazgos principales para reconocer la lesión en la microscopía, y la "figurita difícil" (hallazgo patognomónico), si la hay.
-- Error fatal: algo que, si lo escribís o lo decís en una evaluación, te reprueba automáticamente.
-- Trampa del profesor: una pregunta que podría hacerte un profesor para confundirte o desafiar tus conocimientos.
-
-Te voy a pasar las lesiones de a una.</pre>
+    <div class="preview" aria-label="Vista previa del contenido del ebook">
+      <div class="preview-head">
+        <b>Guía high-yield · Cirrosis hepática</b>
+        <small>Así se ve una página del método</small>
       </div>
-      <div class="prompt">
-        <header><b>Paso 5 · Autoevaluación</b><button class="copy" type="button" data-copy="p2">Copiar</button></header>
-        <pre id="p2">Haceme un cuestionario en formato interactivo a partir de estas fotos. Lo subrayado es relevante, lo resaltado es importante, y lo resaltado y subrayado es de prioridad máxima, al igual que las anotaciones en lapicera. Haceme una pregunta por vez y esperá mi respuesta antes de corregirme.</pre>
+      <div class="cols">
+        <div class="col v"><span class="ico">👀 Clave visual</span><div class="bar" style="width:92%"></div><div class="bar hl" style="width:70%"></div><div class="bar" style="width:84%"></div><div class="bar" style="width:55%"></div></div>
+        <div class="col f"><span class="ico">🚫 Error fatal</span><div class="bar" style="width:88%"></div><div class="bar hl" style="width:62%"></div><div class="bar" style="width:76%"></div></div>
+        <div class="col t"><span class="ico">⚠️ Trampa del profesor</span><div class="bar" style="width:80%"></div><div class="bar" style="width:94%"></div><div class="bar hl" style="width:58%"></div></div>
       </div>
-      <div class="prompt">
-        <header><b>Patología especial · Guía autoevaluable</b><button class="copy" type="button" data-copy="p3">Copiar</button></header>
-        <pre id="p3">Necesito que me des esta información:
-- Concepto (de la lesión y/o patología asociada)
-- Etiología
-- Clasificación
-- Patogenia / Fisiopatogenia
-- Morfología macro y micro
-- Clínica (manifestaciones, evolución y complicaciones)
-
-Te voy a ir pasando las lesiones. La información tiene que ser MUY concisa y relevante, orientada a un parcial de patología especial en el laboratorio, con microscopio.</pre>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CRONOGRAMA -->
-<section id="cronograma">
-  <div class="wrap stack-lg">
-    <span class="eyebrow">Nuevo · Plan semanal</span>
-    <h2>Cómo encaja el método en una semana de parcialito</h2>
-    <p class="lead read">Una propuesta para un tema por semana. Ajustá los tiempos según tu cátedra.</p>
-    <div class="scroll-x">
-      <div class="week">
-        <div class="day"><b>Lunes</b><span class="chip">Pasos 1 y 2</span>Teoría + marcaje inicial. Cuadros de conceptos clave.</div>
-        <div class="day"><b>Martes</b><span class="chip">Paso 3</span>Estudio y marcaje de la primera mitad. TP si hay.</div>
-        <div class="day"><b>Miércoles</b><span class="chip">Paso 3</span>Segunda mitad. Notas en lapicera.</div>
-        <div class="day"><b>Jueves</b><span class="chip">Paso 4</span>Guía high-yield de cada preparado.</div>
-        <div class="day"><b>Viernes</b><span class="chip">Paso 5</span>Cuestionario con IA. Repasá lo que fallaste.</div>
-        <div class="day"><b>Sábado</b><span class="chip">Repaso</span>Repetí el cuestionario de los cuadros azules.</div>
-        <div class="day exam"><b>Parcialito</b><span class="chip">Examen</span>Leé solo la clave visual y la trampa del profesor.</div>
-      </div>
+      <div class="lock"><span>🔒 Disponible en el ebook</span></div>
     </div>
   </div>
 </section>
@@ -412,59 +284,13 @@ Te voy a ir pasando las lesiones. La información tiene que ser MUY concisa y re
     <span class="eyebrow">Qué incluye</span>
     <h2>Todo lo que te llevás</h2>
     <ul class="incl">
-      <li class="core"><span class="tipo">Principal</span><h3>Ebook Método LOCAR</h3><p>Las dos fases del método explicadas paso a paso, con la jerarquía de marcaje y cómo usar los TPs.</p></li>
-      <li><span class="tipo">Incluido</span><h3>Pack de prompts</h3><p>Los prompts del método listos para copiar, con ejemplos de una buena respuesta de la IA.</p></li>
-      <li><span class="tipo">Incluido</span><h3>Ejemplo resuelto completo</h3><p>Un tema real de punta a punta: libro marcado, guía high-yield y guía autoevaluable.</p></li>
-      <li><span class="tipo">Bonus</span><h3>Preguntas frecuentes del 1er parcial</h3><p>Patología General: las preguntas que más se toman, con respuesta corta.</p></li>
-      <li><span class="tipo">Bonus</span><h3>Plantilla imprimible</h3><p>La cara de atrás de la guía con los seis campos listos para completar y tapar.</p></li>
-      <li><span class="tipo">Bonus</span><h3>Plan semanal y repaso</h3><p>El cronograma de cada parcialito y cuándo volver a tus guías.</p></li>
+      <li class="core"><span class="tipo">Principal</span><h3>Ebook Método LOCAR</h3><p>Las dos fases del método explicadas paso a paso.</p></li>
+      <li><span class="tipo">Incluido</span><h3>Pack de prompts</h3><p>Listos para copiar y pegar en la IA que uses.</p></li>
+      <li><span class="tipo">Incluido</span><h3>Ejemplo resuelto</h3><p>Un tema real hecho de punta a punta con el método.</p></li>
+      <li><span class="tipo">Bonus</span><h3>Preguntas del 1er parcial</h3><p>Las que más se toman en Patología General, con respuesta.</p></li>
+      <li><span class="tipo">Bonus</span><h3>Plantilla imprimible</h3><p>Para armar tus guías autoevaluables de laboratorio.</p></li>
+      <li><span class="tipo">Bonus</span><h3>Plan semanal</h3><p>Cómo organizar la semana antes de cada parcialito.</p></li>
     </ul>
-    <div class="pend-box stack">
-      <span class="pend">Falta en el ebook</span>
-      <p>Hay que sumar al ebook: <b>método para el final</b>, el ejemplo resuelto con fotos reales del libro marcado, las preguntas del 1er parcial completas (abajo hay una muestra) y qué hacer si no tenés el libro en papel o no hubo TP.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PREGUNTAS 1ER PARCIAL (MUESTRA) -->
-<section id="primer-parcial">
-  <div class="wrap stack-lg">
-    <span class="eyebrow">Muestra del bonus</span>
-    <h2>Preguntas frecuentes del 1er parcial: Patología General</h2>
-    <div class="read">
-      <details>
-        <summary>¿En qué se diferencian la necrosis y la apoptosis?</summary>
-        <p>La <span class="res">necrosis</span> siempre es patológica: la célula se hincha, la membrana se rompe y hay <span class="max">inflamación</span>. La <span class="res">apoptosis</span> puede ser fisiológica: la célula se encoge, la membrana queda intacta, se forman cuerpos apoptóticos y <span class="max">no hay inflamación</span>.</p>
-      </details>
-      <details>
-        <summary>¿Qué tipos de necrosis hay y un ejemplo de cada una?</summary>
-        <ul>
-          <li><b>Coagulativa:</b> infarto de miocardio o riñón. Se conserva la silueta celular.</li>
-          <li><b>Licuefactiva:</b> infarto cerebral, abscesos.</li>
-          <li><b>Caseosa:</b> tuberculosis.</li>
-          <li><b>Grasa:</b> pancreatitis aguda.</li>
-          <li><b>Fibrinoide:</b> vasculitis inmunitarias.</li>
-          <li><b>Gangrenosa:</b> no es un tipo histológico. Es un término clínico, por lo general para un miembro isquémico.</li>
-        </ul>
-      </details>
-      <details>
-        <summary>¿Qué es la metaplasia? Dame un ejemplo.</summary>
-        <p>Es el reemplazo <span class="sub">reversible</span> de un tipo celular adulto por otro, más resistente al estímulo. Por ejemplo, el <span class="max">esófago de Barrett</span>: el epitelio escamoso pasa a cilíndrico con células caliciformes por el reflujo.</p>
-      </details>
-      <details>
-        <summary>¿Qué es un granuloma?</summary>
-        <p>Es un foco de inflamación crónica formado por <span class="max">macrófagos epitelioides</span>, a menudo con células gigantes multinucleadas y un halo de linfocitos. El de la tuberculosis tiene necrosis caseosa central.</p>
-      </details>
-      <details>
-        <summary>¿Cómo se diferencia un trombo de un coágulo post mortem?</summary>
-        <p>El trombo está adherido a la pared y muestra <span class="max">líneas de Zahn</span>: capas alternadas de plaquetas con fibrina y de glóbulos rojos. El coágulo post mortem no está adherido, es gelatinoso y no tiene líneas de Zahn.</p>
-      </details>
-      <details>
-        <summary>¿Qué diferencia hay entre un trasudado y un exudado?</summary>
-        <p>El <span class="res">trasudado</span> tiene pocas proteínas y pocas células, y se debe a cambios de presión hidrostática u oncótica. El <span class="res">exudado</span> tiene muchas proteínas y células porque <span class="max">aumenta la permeabilidad vascular</span>, como en la inflamación.</p>
-      </details>
-    </div>
-    <p class="disclaimer read"><span class="pend">Muestra</span> El bonus completo debería tener entre 25 y 40 preguntas armadas con las que más se toman en tu cátedra.</p>
   </div>
 </section>
 
@@ -476,8 +302,7 @@ Te voy a ir pasando las lesiones. La información tiene que ser MUY concisa y re
       <h2>Hecho por un estudiante que ya pasó por Patología</h2>
       <div class="pend-box stack">
         <span class="pend">Pendiente: historia del autor</span>
-        <p>Acá va Erick: foto, en qué facultad cursó, con qué nota aprobó, si es ayudante y cómo armó el método. Dos o tres párrafos en primera persona. Es lo que más confianza genera en la página.</p>
-        <p>También falta definir <b>qué significa “LOCAR”</b>. Si es un acrónimo, conviene mostrarlo letra por letra.</p>
+        <p>Acá va Erick: foto, en qué facultad cursó, con qué nota aprobó, si es ayudante y cómo armó el método. Dos o tres párrafos en primera persona.</p>
       </div>
     </div>
     <div class="stack-lg">
@@ -485,7 +310,7 @@ Te voy a ir pasando las lesiones. La información tiene que ser MUY concisa y re
       <h2>Testimonios</h2>
       <div class="stack">
         <div class="quote"><span class="pend">Pendiente</span><p>Testimonio real de un compañero que usó el método: qué nota sacó y qué cambió.</p><small>Nombre, facultad, año</small></div>
-        <div class="quote"><span class="pend">Pendiente</span><p>Idea: dar el ebook gratis a 10 compañeros a cambio de su opinión antes del lanzamiento.</p><small>Nombre, facultad, año</small></div>
+        <div class="quote"><span class="pend">Pendiente</span><p>Segundo testimonio.</p><small>Nombre, facultad, año</small></div>
       </div>
     </div>
   </div>
@@ -495,18 +320,17 @@ Te voy a ir pasando las lesiones. La información tiene que ser MUY concisa y re
 <section id="comprar">
   <div class="wrap">
     <div class="price">
-      <span class="eyebrow">Precio de lanzamiento</span>
-      <div class="amt">$19.000 <small style="font-size:.4em;color:var(--muted)">ARS</small></div>
-      <p style="color:var(--muted)">Pago único. Te sirve para toda la cursada y los parciales de patología especial.</p>
-      <span class="pend" style="justify-self:center">Pendiente: plataforma de pago</span>
+      <span class="eyebrow">Accedé hoy</span>
+      <div class="amt">$19.000 <small>ARS</small></div>
+      <p class="note">Pago único. Te sirve para toda la cursada y los parciales de patología especial.</p>
       <ul>
         <li>Ebook Método LOCAR (PDF)</li>
-        <li>Pack de prompts listos para copiar</li>
-        <li>Ejemplo resuelto completo</li>
+        <li>Pack de prompts</li>
+        <li>Ejemplo resuelto</li>
         <li>Bonus: preguntas del 1er parcial, plantilla imprimible y plan semanal</li>
       </ul>
       <a class="btn" href="#comprar">Comprar ahora</a>
-      <p class="disclaimer">Pago con Mercado Pago o Hotmart. Lo recibís en tu mail al instante.</p>
+      <span class="pend">Pendiente: plataforma de pago</span>
     </div>
   </div>
 </section>
@@ -517,11 +341,11 @@ Te voy a ir pasando las lesiones. La información tiene que ser MUY concisa y re
     <span class="eyebrow">Preguntas frecuentes</span>
     <h2>Antes de comprar</h2>
     <div class="read">
-      <details><summary>¿Sirve para mi facultad?</summary><p>El método funciona con cualquier cátedra que use el Robbins y guías de laboratorio, porque parte de lo que da <i>tu</i> teoría y <i>tu</i> guía. <span class="pend">Definir si se nombra una facultad</span></p></details>
-      <details><summary>¿Necesito el libro en papel?</summary><p>Sí, se recomienda en papel o fotocopiado, porque el método se basa en marcar a mano. <span class="pend">Agregar alternativa digital</span></p></details>
-      <details><summary>¿Qué IA tengo que usar?</summary><p>La que quieras. Los prompts funcionan con ChatGPT, Gemini o Claude, incluso en las versiones gratuitas que aceptan fotos.</p></details>
+      <details><summary>¿Sirve para mi facultad?</summary><p>Sí, si tu cátedra usa el Robbins y guías de laboratorio. El método se adapta a lo que da tu teoría y tu guía.</p></details>
+      <details><summary>¿Qué necesito para usarlo?</summary><p>El Robbins en papel o fotocopiado, las guías de laboratorio de tu cátedra y una IA de tu elección.</p></details>
+      <details><summary>¿Qué IA tengo que usar?</summary><p>La que quieras. Funciona con ChatGPT, Gemini o Claude, incluso en las versiones gratuitas que aceptan fotos.</p></details>
       <details><summary>¿Reemplaza la bibliografía?</summary><p>No. Es un método para estudiar mejor la bibliografía de tu cátedra. No incluye ni reproduce contenido del Robbins.</p></details>
-      <details><summary>¿Cómo lo recibo?</summary><p>Después del pago te llega un mail con el link de descarga. <span class="pend">Confirmar plataforma</span></p></details>
+      <details><summary>¿Cómo lo recibo?</summary><p>Después del pago te llega un mail con el link de descarga.</p></details>
     </div>
   </div>
 </section>
@@ -535,56 +359,28 @@ Te voy a ir pasando las lesiones. La información tiene que ser MUY concisa y re
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-
 <script>
-// Post-its de la guía autoevaluable
-document.querySelectorAll('#back .postit').forEach(function (b) {
-  b.addEventListener('click', function () { b.parentElement.classList.add('open'); });
-});
-document.getElementById('reveal-all').addEventListener('click', function () {
-  document.querySelectorAll('#back .field').forEach(function (f) { f.classList.add('open'); });
-});
-document.getElementById('cover-all').addEventListener('click', function () {
-  document.querySelectorAll('#back .field').forEach(function (f) { f.classList.remove('open'); });
-});
-
-// Copiar prompts
-var toast = document.getElementById('toast'), tt;
-function say(msg) { toast.textContent = msg; toast.hidden = false; clearTimeout(tt); tt = setTimeout(function () { toast.hidden = true; }, 1800); }
-document.querySelectorAll('.copy').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    var pre = document.getElementById(btn.dataset.copy);
-    var text = pre.textContent;
-    function fallback() {
-      var r = document.createRange(); r.selectNodeContents(pre);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      say('Texto seleccionado: copialo con Ctrl+C');
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () { say('Prompt copiado'); }, fallback);
-    } else { fallback(); }
-  });
-});
-
 // Portada: un "preparado" generativo con núcleos (hematoxilina) sobre citoplasma (eosina)
 (function () {
   var c = document.getElementById('tissue'); if (!c) return;
   var ctx = c.getContext('2d');
+  function isDark() {
+    var t = document.documentElement.dataset.theme;
+    if (t) return t === 'dark';
+    return matchMedia('(prefers-color-scheme: dark)').matches;
+  }
   function draw() {
     var r = c.getBoundingClientRect(), d = window.devicePixelRatio || 1;
-    c.width = r.width * d; c.height = r.height * d; ctx.scale(d, d);
-    var dark = matchMedia('(prefers-color-scheme: dark)').matches && document.documentElement.dataset.theme !== 'light' || document.documentElement.dataset.theme === 'dark';
+    c.width = r.width * d; c.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    var dark = isDark();
     var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
     ctx.fillStyle = dark ? '#2a1b2a' : '#f7d9e4'; ctx.fillRect(0, 0, r.width, r.height);
-    // nódulos de regeneración separados por tabiques
     for (var i = 0; i < 9; i++) {
       var x = rnd() * r.width, y = rnd() * r.height, rad = 40 + rnd() * 60;
       ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2);
       ctx.fillStyle = dark ? 'rgba(241,122,163,.18)' : 'rgba(217,70,122,.16)'; ctx.fill();
       ctx.lineWidth = 6; ctx.strokeStyle = dark ? 'rgba(185,160,240,.22)' : 'rgba(75,42,138,.14)'; ctx.stroke();
     }
-    // núcleos
     for (var j = 0; j < 260; j++) {
       var nx = rnd() * r.width, ny = rnd() * r.height, nr = 2 + rnd() * 3.2;
       ctx.beginPath(); ctx.ellipse(nx, ny, nr, nr * (0.7 + rnd() * 0.4), rnd() * Math.PI, 0, Math.PI * 2);
@@ -594,6 +390,7 @@ document.querySelectorAll('.copy').forEach(function (btn) {
   }
   draw();
   var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(draw, 150); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
 })();
 </script>
 </body>

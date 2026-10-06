@@ -1,7 +1,7 @@
 # Método LOCAR: estado del proyecto
 
 Landing: `index.html` (página estática, se puede publicar en Vercel, Netlify o GitHub Pages).
-Borrador original del ebook: `docs/ebook-borrador-v1.txt`.
+El contenido del ebook no se guarda en este repo porque es público.
 
 ## Producto
 
@@ -10,16 +10,16 @@ Dos fases: cursada (5 pasos por tema) y parciales de patología especial (guías
 
 ## Ya está en la landing
 
-- [x] Hero con promesa y portada de muestra
-- [x] Sección de dolor del estudiante
-- [x] Los 5 pasos + jerarquía de marcaje + preparación previa
-- [x] Ejemplo resuelto: guía high-yield de **cirrosis hepática** (clave visual, error fatal y trampa)
-- [x] Ejemplo de guía autoevaluable interactiva (post-its que se levantan)
-- [x] Pack de prompts con botón de copiar (corregidos: "Pront" → "Prompt")
-- [x] Plan semanal para un parcialito
+La landing es **solo de venta**: muestra resultados y qué incluye, no el contenido del método.
+
+- [x] Hero con promesa, precio y portada de muestra
+- [x] Dolor del estudiante
+- [x] Resultados que logra el método (4 beneficios)
+- [x] Cómo funciona, a alto nivel (2 fases, sin explicar los pasos)
+- [x] Vista previa bloqueada de una guía high-yield (sin contenido real)
 - [x] Qué incluye (producto principal + bonus)
-- [x] Muestra de preguntas del 1er parcial (6 preguntas)
-- [x] Preguntas frecuentes antes de comprar
+- [x] Precio: $19.000 ARS
+- [x] Preguntas frecuentes de compra
 - [x] Descargo legal (no afiliado al Robbins, no reemplaza la bibliografía)
 
 ## Pendiente: lo tienen que definir ustedes
