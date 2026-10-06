@@ -27,7 +27,8 @@ Dos fases: cursada (5 pasos por tema) y parciales de patología especial (guías
 - [ ] Qué significa **LOCAR**
 - [ ] Historia y credenciales de Erick (foto, facultad, nota, si es ayudante)
 - [ ] Testimonios reales (idea: dar el ebook gratis a 10 compañeros a cambio de su opinión)
-- [ ] Precio y plataforma de pago (Mercado Pago / Hotmart)
+- [x] Precio: **$19.000 ARS** (pago único)
+- [ ] Plataforma de pago (Mercado Pago / Hotmart)
 - [ ] ¿Se nombra una facultad o cátedra en particular?
 - [ ] Dominio
 
