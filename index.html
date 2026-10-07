@@ -151,7 +151,22 @@ section + section { border-top: 1px solid var(--line); }
 .incl .core { border: 2px solid var(--hema); }
 .incl p { color: var(--muted); }
 
-/* Autor, testimonios, precio */
+/* Historia del autor */
+.story { display: grid; grid-template-columns: 14rem 1fr; gap: var(--s-4); align-items: start; }
+.story > * { min-width: 0; }
+.avatar { aspect-ratio: 1; max-width: 100%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--hema-soft), var(--eosin-soft)); border: 2px dashed var(--pending); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem; }
+.avatar span { font: 800 4.5rem/1 var(--f-display); color: var(--hema); }
+.avatar small { font: 600 .7rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--pending); }
+.story p { font-size: 1.1rem; }
+.sign { font: 800 1.4rem/1.2 var(--f-display); display: flex; flex-direction: column; gap: .2rem; }
+.sign small { font: 400 .9rem/1.3 var(--f-body); color: var(--muted); }
+.fill { background: var(--pending-soft); color: var(--pending); border-bottom: 1px dashed var(--pending); padding-inline: .2em; font-weight: 700; }
+.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); }
+.quote { margin: 0; }
+.quote blockquote { margin: 0; font-size: 1.05rem; }
+.quote figcaption { display: flex; flex-direction: column; margin-top: auto; padding-top: var(--s-1); border-top: 1px solid var(--line); }
+
+/* Precio */
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); align-items: start; }
 .duo > * { min-width: 0; }
 .quote { background: var(--surface); border: 1px dashed var(--pending); border-radius: var(--r); padding: var(--s-3); display: flex; flex-direction: column; gap: var(--s-1); }
@@ -174,7 +189,9 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
 @media (max-width: 860px) {
   .hero-grid, .duo, .phases { grid-template-columns: 1fr; }
   .slide { max-width: 22rem; }
-  .incl, .cols { grid-template-columns: 1fr; }
+  .incl, .cols, .quotes { grid-template-columns: 1fr; }
+  .story { grid-template-columns: 1fr; }
+  .avatar { width: 9rem; }
 }
 @media (max-width: 560px) {
   .pains, .wins { grid-template-columns: 1fr; }
@@ -294,25 +311,46 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
   </div>
 </section>
 
-<!-- AUTOR + TESTIMONIOS -->
+<!-- HISTORIA DE ERICK -->
 <section id="autor">
-  <div class="wrap duo">
-    <div class="stack-lg">
+  <div class="wrap story">
+    <div class="avatar" aria-label="Foto de Erick (pendiente)"><span>E</span><small>Foto pendiente</small></div>
+    <div class="stack-lg read">
       <span class="eyebrow">Quién lo creó</span>
-      <h2>Hecho por un estudiante que ya pasó por Patología</h2>
-      <div class="pend-box stack">
-        <span class="pend">Pendiente: historia del autor</span>
-        <p>Acá va Erick: foto, en qué facultad cursó, con qué nota aprobó, si es ayudante y cómo armó el método. Dos o tres párrafos en primera persona.</p>
-      </div>
+      <h2>“No me faltaban horas de estudio. Me faltaba saber qué estudiar.”</h2>
+      <p>Soy Erick, estudiante de Medicina en <span class="fill">[facultad]</span>. Cuando empecé Patología hice lo que hacen casi todos: agarré el Robbins, empecé por la primera página del capítulo y subrayé casi todo.</p>
+      <p>En el <span class="fill">[primer parcialito]</span> me di cuenta de que no alcanzaba. Había leído mucho, pero no sabía qué era lo importante, y en el laboratorio miraba el preparado sin saber qué buscar.</p>
+      <p>Así que cambié la forma de estudiar. Empecé a cruzar lo que daban en la teoría con lo que pedían las guías, a ordenar lo que marcaba por prioridad y a usar la IA para que me tomara examen en vez de resumirme el libro. Cada parcialito fui ajustando el sistema hasta que funcionó.</p>
+      <p>Aprobé Patología con <span class="fill">[nota]</span> en <span class="fill">[año]</span>, y varios compañeros empezaron a pedirme cómo estudiaba. Eso es el Método LOCAR: lo que me hubiera gustado tener el primer día de cursada.</p>
+      <p class="sign">Erick <small><span class="fill">[año de la carrera / ayudante de cátedra, si corresponde]</span></small></p>
+      <span class="pend">Borrador: Erick tiene que revisarlo y completar los datos entre corchetes</span>
     </div>
-    <div class="stack-lg">
-      <span class="eyebrow">Lo que dicen</span>
-      <h2>Testimonios</h2>
-      <div class="stack">
-        <div class="quote"><span class="pend">Pendiente</span><p>Testimonio real de un compañero que usó el método: qué nota sacó y qué cambió.</p><small>Nombre, facultad, año</small></div>
-        <div class="quote"><span class="pend">Pendiente</span><p>Segundo testimonio.</p><small>Nombre, facultad, año</small></div>
-      </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="wrap stack-lg">
+    <span class="eyebrow">Lo que dicen quienes lo usaron</span>
+    <h2>Testimonios</h2>
+    <div class="quotes">
+      <figure class="quote">
+        <span class="pend">Ejemplo · reemplazar por uno real</span>
+        <blockquote>“Antes leía el capítulo entero y llegaba al parcialito sin saber qué entraba. Con el método empecé a estudiar la mitad de páginas y me fue mejor.”</blockquote>
+        <figcaption><b>Nombre A.</b><small>Medicina · [facultad] · 3er año</small></figcaption>
+      </figure>
+      <figure class="quote">
+        <span class="pend">Ejemplo · reemplazar por uno real</span>
+        <blockquote>“Lo que más me sirvió fue el laboratorio. Ahora miro el preparado y sé qué buscar primero.”</blockquote>
+        <figcaption><b>Nombre B.</b><small>Medicina · [facultad] · 3er año</small></figcaption>
+      </figure>
+      <figure class="quote">
+        <span class="pend">Ejemplo · reemplazar por uno real</span>
+        <blockquote>“Usaba la IA para que me resumiera y no me quedaba nada. Con los prompts del método me toma examen de lo que yo marqué.”</blockquote>
+        <figcaption><b>Nombre C.</b><small>Medicina · [facultad] · 4to año</small></figcaption>
+      </figure>
     </div>
+    <p class="disclaimer read">Estos tres son ejemplos de formato. Antes de publicar la página hay que reemplazarlos por testimonios reales, con permiso de cada persona.</p>
   </div>
 </section>
 

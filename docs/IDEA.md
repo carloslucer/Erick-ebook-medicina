@@ -25,8 +25,8 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 ## Pendiente: lo tienen que definir ustedes
 
 - [ ] Qué significa **LOCAR**
-- [ ] Historia y credenciales de Erick (foto, facultad, nota, si es ayudante)
-- [ ] Testimonios reales (idea: dar el ebook gratis a 10 compañeros a cambio de su opinión)
+- [~] Historia de Erick: borrador escrito en la landing. Falta que Erick lo revise y complete facultad, nota, año y foto
+- [~] Testimonios: hay 3 ejemplos de formato. Reemplazarlos por reales antes de publicar (ver `docs/TESTIMONIOS.md`)
 - [x] Precio: **$19.000 ARS** (pago único)
 - [ ] Plataforma de pago (Mercado Pago / Hotmart)
 - [ ] ¿Se nombra una facultad o cátedra en particular?
