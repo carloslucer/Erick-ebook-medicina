@@ -48,3 +48,8 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 - [ ] Qué hacer si no tenés el libro en papel, si no hubo teoría o si no hubo TP
 - [ ] Repaso espaciado: cuándo volver a las guías
 - [ ] Diseño del PDF (portada, tipografía, cajas para los prompts)
+
+## Versiones de la landing
+
+- `index.html`: versión A, con las portadas de Canva (`assets/img/canva/`).
+- `landing-portadas-claude.html`: versión B, con las portadas hechas en HTML (`assets/img/`).
