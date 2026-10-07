@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portadas Método LOCAR</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Fuente de las portadas. Cada .cover se exporta a PNG con scripts/render-portadas.mjs */
+:root {
+  --hema: #4b2a8a; --hema-deep: #24124a; --hema-soft: #ebe4f7;
+  --eosin: #d9467a; --eosin-soft: #fbe3ec; --mark: #fff07a; --ink: #221b2e; --paper: #fbf9fd;
+  --postit: #ffd966; --amber: #b45309;
+  --f-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body { background: #ccc; padding: 40px; display: flex; flex-wrap: wrap; gap: 40px; font-family: var(--f-body); }
+.cover { width: 900px; height: 1200px; position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 72px; color: var(--ink); background: var(--paper); }
+.kicker { font: 700 22px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; }
+.title { font: 800 128px/.92 var(--f-display); letter-spacing: -.02em; }
+.sub { font: 500 34px/1.25 var(--f-display); }
+.hl { background: linear-gradient(transparent 14%, var(--mark) 14%, var(--mark) 86%, transparent 86%); padding: 0 .08em; text-decoration: underline; text-decoration-color: var(--eosin); text-decoration-thickness: .08em; text-underline-offset: .1em; }
+.foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; font: 700 22px/1.2 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+.badge { font: 700 22px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; padding: 14px 20px; border-radius: 8px; }
+canvas.tissue { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+
+/* 1 · Ebook principal */
+#ebook { padding: 0; background: var(--hema-deep); color: #fff; }
+#ebook .top { position: relative; height: 560px; overflow: hidden; }
+#ebook .top .badge { position: absolute; right: 56px; top: 56px; background: var(--eosin); color: #fff; }
+#ebook .top .ocular { position: absolute; left: 50%; top: 50%; width: 420px; height: 420px; transform: translate(-50%,-50%); border-radius: 50%; box-shadow: 0 0 0 2000px rgba(36,18,74,.55), inset 0 0 60px rgba(0,0,0,.35); border: 3px solid rgba(255,255,255,.5); }
+#ebook .body { padding: 56px 72px 72px; display: flex; flex-direction: column; gap: 28px; flex: 1; }
+#ebook .kicker { color: #f6a9c4; }
+#ebook .title { color: #fff; font-size: 150px; }
+#ebook .sub { color: #ddd2f3; max-width: 680px; }
+#ebook .hl { color: var(--ink); }
+#ebook .foot { color: #bfb0e2; }
+
+/* 2 · Pack de prompts */
+#prompts { background: var(--hema); color: #fff; gap: 40px; }
+#prompts .kicker { color: var(--mark); }
+#prompts .title { font-size: 112px; }
+.term { background: #1b0f36; border-radius: 18px; padding: 34px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.5); }
+.term .dots { display: flex; gap: 12px; }
+.term .dots i { width: 18px; height: 18px; border-radius: 50%; background: #5a4a80; }
+.term .dots i:first-child { background: var(--eosin); }
+.term .row { display: flex; gap: 18px; align-items: center; }
+.term .tag { font: 700 22px/1 var(--f-mono); padding: 10px 14px; border-radius: 6px; flex: none; }
+.t1 { background: var(--hema-soft); color: var(--hema); }
+.t2 { background: var(--eosin); color: #fff; }
+.t3 { background: var(--postit); color: #3a2a00; }
+.term .bar { height: 18px; border-radius: 4px; background: #3a2a63; flex: 1; }
+.term .bar.y { background: rgba(255,240,122,.55); }
+.copy-btn { align-self: flex-end; font: 700 22px/1 var(--f-mono); color: var(--mark); border: 2px solid var(--mark); border-radius: 999px; padding: 12px 22px; }
+#prompts .foot { color: #d6c9f2; }
+
+/* 3 · Preguntas 1er parcial */
+#preguntas { background: var(--eosin-soft); gap: 36px; }
+#preguntas .kicker { color: var(--eosin); }
+#preguntas .title { font-size: 116px; color: var(--ink); }
+#preguntas .q-big { position: absolute; right: -40px; top: 120px; font: 800 620px/1 var(--f-display); color: rgba(217,70,122,.13); }
+.cards { display: flex; flex-direction: column; gap: 22px; position: relative; }
+.card { background: #fff; border-radius: 16px; padding: 28px 32px; display: flex; gap: 22px; align-items: center; box-shadow: 0 12px 30px -16px rgba(120,20,60,.35); }
+.card b { font: 800 40px/1 var(--f-display); color: var(--eosin); width: 64px; flex: none; }
+.card .lines { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.card .lines i { display: block; height: 16px; border-radius: 4px; background: #eee3ea; }
+.card .lines i.y { background: var(--mark); }
+#preguntas .foot { color: var(--eosin); }
+
+/* 4 · Plantilla autoevaluable */
+#plantilla { background: #f3efe6; gap: 40px; }
+#plantilla .kicker { color: var(--amber); }
+#plantilla .title { font-size: 108px; }
+.sheet { background: #fff; border-radius: 10px; padding: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; box-shadow: 0 30px 50px -28px rgba(60,40,0,.45); transform: rotate(-1.5deg); }
+.slot { position: relative; height: 150px; border: 2px solid #e8e1d2; border-radius: 8px; }
+.slot .pi { position: absolute; inset: 10px; background: var(--postit); border-radius: 4px; box-shadow: 0 8px 14px -8px rgba(0,0,0,.4); }
+.slot:nth-child(odd) .pi { transform: rotate(2deg); }
+.slot:nth-child(even) .pi { transform: rotate(-1.5deg); }
+.slot:nth-child(3) .pi { transform: translate(40px,-30px) rotate(12deg); }
+.slot .ln { position: absolute; left: 20px; right: 20px; height: 12px; border-radius: 3px; background: #ece6f6; }
+#plantilla .foot { color: var(--amber); }
+
+/* 5 · Plan semanal */
+#plan { background: var(--paper); gap: 44px; }
+#plan .kicker { color: var(--hema); }
+#plan .title { font-size: 120px; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+.day { background: var(--hema-soft); border-radius: 12px; height: 420px; padding: 18px 12px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.day b { font: 800 40px/1 var(--f-display); color: var(--hema); }
+.day i { width: 100%; border-radius: 6px; background: rgba(75,42,138,.22); display: block; }
+.day.exam { background: var(--eosin); }
+.day.exam b { color: #fff; }
+.day.exam i { background: rgba(255,255,255,.4); }
+#plan .foot { color: var(--hema); }
+
+.brand { font: 800 30px/1 var(--f-display); letter-spacing: .04em; }
+.brand span { color: var(--eosin); }
+
+/* 6 · Ejemplo resuelto */
+#ejemplo { background: var(--ink); color: #fff; gap: 40px; }
+#ejemplo .kicker { color: #f6a9c4; }
+#ejemplo .title { font-size: 116px; }
+.pages { position: relative; height: 560px; }
+.pg { position: absolute; width: 560px; height: 520px; background: #fff; border-radius: 10px; padding: 40px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 30px 50px -24px rgba(0,0,0,.6); }
+.pg:nth-child(1) { left: 0; top: 30px; transform: rotate(-6deg); background: #efe9f7; }
+.pg:nth-child(2) { left: 90px; top: 10px; transform: rotate(-1deg); background: #f8f4fb; }
+.pg:nth-child(3) { left: 190px; top: 30px; transform: rotate(4deg); }
+.pg i { display: block; height: 18px; border-radius: 4px; background: #e6deef; }
+.pg i.y { background: var(--mark); }
+.pg i.u { background: #e6deef; border-bottom: 5px solid var(--eosin); height: 22px; }
+.pg .h { height: 34px; width: 60%; background: var(--hema); border-radius: 6px; }
+.stamp { position: absolute; right: 10px; bottom: 0; font: 800 30px/1 var(--f-display); color: var(--eosin); border: 4px solid var(--eosin); border-radius: 10px; padding: 14px 18px; transform: rotate(-8deg); background: rgba(34,27,46,.85); }
+#ejemplo .foot { color: #bfb0e2; }
+</style>
+</head>
+<body>
+
+<div class="cover" id="ebook">
+  <div class="top"><canvas class="tissue" data-seed="11"></canvas><div class="ocular"></div><span class="badge">H&amp;E · 40x</span></div>
+  <div class="body">
+    <span class="kicker">Método de estudio · Patología</span>
+    <h1 class="title">MÉTODO<br>LOCAR</h1>
+    <p class="sub">Estudiá del Robbins <span class="hl">con un método</span>, no a ciegas. Cursada, parcialitos y laboratorio, con IA.</p>
+    <div class="foot"><span>Por Erick</span><span>Ebook · 2026</span></div>
+  </div>
+</div>
+
+<div class="cover" id="prompts">
+  <span class="kicker">Incluido · Método LOCAR</span>
+  <h1 class="title">Pack de<br>prompts</h1>
+  <div class="term">
+    <div class="dots"><i></i><i></i><i></i></div>
+    <div class="row"><span class="tag t1">CLAVE VISUAL</span><span class="bar"></span></div>
+    <div class="row"><span class="bar y"></span><span class="bar"></span></div>
+    <div class="row"><span class="tag t2">ERROR FATAL</span><span class="bar"></span></div>
+    <div class="row"><span class="bar"></span><span class="bar y"></span></div>
+    <div class="row"><span class="tag t3">TRAMPA DEL PROFE</span><span class="bar"></span></div>
+    <span class="copy-btn">Copiar ⧉</span>
+  </div>
+  <div class="foot"><span class="brand">LOCAR<span>.</span></span><span>Listos para copiar</span></div>
+</div>
+
+<div class="cover" id="preguntas">
+  <div class="q-big">?</div>
+  <span class="kicker">Bonus · Patología General</span>
+  <h1 class="title">Preguntas<br>del 1er<br>parcial</h1>
+  <div class="cards">
+    <div class="card"><b>01</b><div class="lines"><i style="width:90%"></i><i class="y" style="width:55%"></i></div></div>
+    <div class="card"><b>02</b><div class="lines"><i style="width:75%"></i><i style="width:60%"></i></div></div>
+    <div class="card"><b>03</b><div class="lines"><i class="y" style="width:82%"></i><i style="width:40%"></i></div></div>
+  </div>
+  <div class="foot"><span class="brand">LOCAR<span>.</span></span><span>Con respuesta</span></div>
+</div>
+
+<div class="cover" id="plantilla">
+  <span class="kicker">Bonus · Imprimible</span>
+  <h1 class="title">Plantilla<br>autoevaluable</h1>
+  <div class="sheet">
+    <div class="slot"><span class="pi"></span></div>
+    <div class="slot"><span class="pi"></span></div>
+    <div class="slot"><span class="ln" style="top:34px"></span><span class="ln" style="top:64px;right:60px"></span><span class="ln" style="top:94px;right:120px"></span><span class="pi"></span></div>
+    <div class="slot"><span class="pi"></span></div>
+    <div class="slot"><span class="pi"></span></div>
+    <div class="slot"><span class="pi"></span></div>
+  </div>
+  <div class="foot"><span class="brand">LOCAR<span>.</span></span><span>Para el laboratorio</span></div>
+</div>
+
+<div class="cover" id="plan">
+  <span class="kicker">Bonus · Organización</span>
+  <h1 class="title">Plan<br>semanal</h1>
+  <div class="week">
+    <div class="day"><b>L</b><i style="height:90px"></i><i style="height:50px"></i></div>
+    <div class="day"><b>M</b><i style="height:130px"></i></div>
+    <div class="day"><b>M</b><i style="height:70px"></i><i style="height:70px"></i></div>
+    <div class="day"><b>J</b><i style="height:110px"></i><i style="height:30px"></i></div>
+    <div class="day"><b>V</b><i style="height:150px"></i></div>
+    <div class="day"><b>S</b><i style="height:60px"></i></div>
+    <div class="day exam"><b>P</b><i style="height:40px"></i></div>
+  </div>
+  <div class="foot"><span class="brand">LOCAR<span>.</span></span><span>Antes de cada parcialito</span></div>
+</div>
+
+<div class="cover" id="ejemplo">
+  <span class="kicker">Incluido · Método LOCAR</span>
+  <h1 class="title">Ejemplo<br>resuelto</h1>
+  <div class="pages">
+    <div class="pg"><span class="h"></span><i style="width:90%"></i><i style="width:70%"></i></div>
+    <div class="pg"><span class="h"></span><i style="width:85%"></i><i class="y" style="width:60%"></i><i style="width:75%"></i></div>
+    <div class="pg"><span class="h"></span><i class="u" style="width:88%"></i><i style="width:65%"></i><i class="y" style="width:80%"></i><i style="width:55%"></i><i class="u" style="width:70%"></i><i style="width:82%"></i></div>
+    <span class="stamp">DE PUNTA A PUNTA</span>
+  </div>
+  <div class="foot"><span class="brand">LOCAR<span>.</span></span><span>Un tema real</span></div>
+</div>
+
+<script>
+// Tejido generativo: nódulos rosados (eosina) con núcleos violetas (hematoxilina)
+document.querySelectorAll('canvas.tissue').forEach(function (c) {
+  var r = c.getBoundingClientRect(), d = 2;
+  c.width = r.width * d; c.height = r.height * d;
+  var ctx = c.getContext('2d'); ctx.scale(d, d);
+  var seed = +c.dataset.seed || 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  ctx.fillStyle = '#f4c9d8'; ctx.fillRect(0, 0, r.width, r.height);
+  for (var i = 0; i < 14; i++) {
+    var x = rnd() * r.width, y = rnd() * r.height, rad = 60 + rnd() * 90;
+    ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(217,70,122,.22)'; ctx.fill();
+    ctx.lineWidth = 10; ctx.strokeStyle = 'rgba(120,60,170,.18)'; ctx.stroke();
+  }
+  for (var j = 0; j < 900; j++) {
+    var nx = rnd() * r.width, ny = rnd() * r.height, nr = 3 + rnd() * 4.5;
+    ctx.beginPath(); ctx.ellipse(nx, ny, nr, nr * (0.65 + rnd() * 0.4), rnd() * Math.PI, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(75,42,138,' + (0.5 + rnd() * 0.45) + ')'; ctx.fill();
+  }
+});
+</script>
+</body>
+</html>

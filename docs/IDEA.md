@@ -22,6 +22,12 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 - [x] Preguntas frecuentes de compra
 - [x] Descargo legal (no afiliado al Robbins, no reemplaza la bibliografía)
 
+## Imágenes
+
+- [x] Portadas del ebook y de los 5 extras en `assets/img/` (fuente editable: `assets/fuente/portadas.html`, se regeneran con `node scripts/render-portadas.mjs`)
+- [ ] Foto real de Erick
+- [ ] Opcional: rehacer las portadas en Canva (conectar Canva en claude.ai)
+
 ## Pendiente: lo tienen que definir ustedes
 
 - [ ] Qué significa **LOCAR**
