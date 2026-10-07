@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Método LOCAR · Pendientes para Erick</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+@page { size: A4; margin: 16mm 16mm 18mm; }
+:root { --ink: #221b2e; --muted: #625a70; --line: #ddd6e6; --hema: #4b2a8a; --hema-soft: #ebe4f7; --eosin: #d9467a; --eosin-soft: #fbe3ec; --mark: #fff07a; --amber: #b45309; --amber-soft: #fdf0dc; --ok: #1f7a4d; --ok-soft: #e3f3ea; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); font: 400 10.5pt/1.5 "Atkinson Hyperlegible", system-ui, sans-serif; }
+h1, h2, h3 { font-family: "Bricolage Grotesque", system-ui, sans-serif; margin: 0; line-height: 1.1; }
+h1 { font-size: 28pt; font-weight: 800; }
+h2 { font-size: 15pt; font-weight: 800; color: var(--hema); display: flex; align-items: baseline; gap: 8pt; }
+h2 .n { font: 700 9pt/1 "JetBrains Mono", monospace; color: var(--eosin); }
+h3 { font-size: 11pt; font-weight: 700; }
+p { margin: 0; }
+.kicker { font: 700 8pt/1 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--eosin); }
+.hl { background: linear-gradient(transparent 15%, var(--mark) 15%, var(--mark) 85%, transparent 85%); padding: 0 .1em; }
+header.top { display: grid; gap: 8pt; padding-bottom: 12pt; border-bottom: 2pt solid var(--hema); margin-bottom: 14pt; }
+.meta { display: flex; flex-wrap: wrap; gap: 6pt 16pt; font-size: 9pt; color: var(--muted); }
+.meta b { color: var(--ink); }
+.summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8pt; margin-bottom: 16pt; }
+.sum { border: 1px solid var(--line); border-radius: 8pt; padding: 9pt 10pt; display: grid; gap: 3pt; }
+.sum .big { font: 800 20pt/1 "Bricolage Grotesque", sans-serif; }
+.sum.urg { background: var(--eosin-soft); border-color: transparent; } .sum.urg .big { color: var(--eosin); }
+.sum.def { background: var(--hema-soft); border-color: transparent; } .sum.def .big { color: var(--hema); }
+.sum.ok { background: var(--ok-soft); border-color: transparent; } .sum.ok .big { color: var(--ok); }
+.sum small { font-size: 8.5pt; color: var(--muted); }
+section { margin-bottom: 14pt; }
+section > h2 { margin-bottom: 7pt; padding-bottom: 4pt; border-bottom: 1px solid var(--line); }
+section > p.intro { color: var(--muted); font-size: 9.5pt; margin-bottom: 6pt; }
+ul.check { list-style: none; margin: 0; padding: 0; display: grid; gap: 5pt; }
+ul.check li { display: grid; grid-template-columns: 13pt 1fr auto; gap: 7pt; align-items: start; break-inside: avoid; }
+ul.check li::before { content: ""; width: 10pt; height: 10pt; margin-top: 2.5pt; border: 1.3pt solid var(--hema); border-radius: 2.5pt; }
+ul.check li > div { min-width: 0; }
+ul.check li small { display: block; color: var(--muted); font-size: 9pt; line-height: 1.4; margin-top: 1pt; }
+.tag { font: 700 7pt/1 "JetBrains Mono", monospace; letter-spacing: .06em; text-transform: uppercase; padding: 3pt 5pt; border-radius: 3pt; white-space: nowrap; margin-top: 1.5pt; }
+.t-urg { background: var(--eosin); color: #fff; }
+.t-def { background: var(--hema-soft); color: var(--hema); }
+.t-txt { background: var(--amber-soft); color: var(--amber); }
+table.fix { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+table.fix th { text-align: left; font: 700 7.5pt/1 "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 5pt 6pt; border-bottom: 1.2pt solid var(--ink); }
+table.fix tr { break-inside: avoid; }
+table.fix td { padding: 5pt 6pt; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.fix td:first-child { width: 13pt; }
+table.fix td:first-child::before { content: ""; display: inline-block; width: 9pt; height: 9pt; border: 1.2pt solid var(--hema); border-radius: 2pt; }
+.bad { color: var(--eosin); text-decoration: line-through; }
+.good { color: var(--ok); font-weight: 700; }
+.note { border-left: 3pt solid var(--amber); background: var(--amber-soft); padding: 8pt 10pt; border-radius: 0 6pt 6pt 0; font-size: 9.5pt; break-inside: avoid; }
+.links { display: grid; grid-template-columns: auto 1fr; gap: 3pt 10pt; font-size: 9pt; }
+.links b { font-family: "JetBrains Mono", monospace; font-size: 8pt; color: var(--muted); }
+.links a { color: var(--hema); word-break: break-all; }
+footer.end { margin-top: 10pt; padding-top: 8pt; border-top: 1px solid var(--line); font-size: 8.5pt; color: var(--muted); }
+.pb { break-before: page; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <span class="kicker">Método LOCAR · Lista de pendientes</span>
+  <h1>Lo que tiene que <span class="hl">corregir y definir</span> Erick</h1>
+  <div class="meta"><span>Para: <b>Erick</b></span><span>Fecha: <b>7 de octubre de 2026</b></span><span>Precio definido: <b>$19.000 ARS</b></span><span>Pago: <b>Mercado Pago</b></span></div>
+</header>
+
+<div class="summary">
+  <div class="sum urg"><span class="big">6</span><b>Antes de publicar</b><small>Sin esto la landing no puede salir.</small></div>
+  <div class="sum def"><span class="big">7</span><b>Decisiones</b><small>Respuestas cortas que destraban el resto.</small></div>
+  <div class="sum ok"><span class="big">10</span><b>Ya está hecho</b><small>Landing, portadas, pago y garantía armados.</small></div>
+</div>
+
+<section>
+  <h2><span class="n">01</span>Antes de publicar la landing</h2>
+  <p class="intro">Hoy la landing tiene textos de ejemplo marcados en naranja. Esto es lo mínimo para salir a vender.</p>
+  <ul class="check">
+    <li><div><b>Conseguir al menos 3 testimonios reales</b><small>Los de “Sofía M.”, “Tomás R.” y “Valentina G.” son inventados para ver el diseño. Hay que reemplazarlos por opiniones reales, con permiso por escrito. Idea: darle el ebook gratis a 10–15 compañeros que estén cursando. El mensaje para pedirlos está en <i>docs/TESTIMONIOS.md</i>.</small></div><span class="tag t-urg">Urgente</span></li>
+    <li><div><b>Revisar y completar tu historia</b><small>El texto de “Quién lo creó” es un borrador en primera persona. Tiene que ser 100% verdad. Completar: facultad, cómo te fue en el primer parcialito, nota con la que aprobaste, año, y si sos ayudante de cátedra.</small></div><span class="tag t-urg">Urgente</span></li>
+    <li><div><b>Mandar una foto tuya</b><small>Va en el círculo de la sección del autor. Mejor de frente, con buena luz; si es estudiando o con el Robbins, mejor todavía.</small></div><span class="tag t-urg">Urgente</span></li>
+    <li><div><b>Confirmar la garantía</b><small>Hoy dice 7 días. En Argentina la ley ya da 10 días para arrepentirse de una compra online, así que la garantía no puede ser menor: conviene poner 10 días o más. Definir también cómo se pide la devolución (mail o WhatsApp).</small></div><span class="tag t-urg">Urgente</span></li>
+    <li><div><b>Datos legales del vendedor y botón de arrepentimiento</b><small>Las ventas online en Argentina tienen que mostrar quién vende (nombre o razón social y CUIT) y un “botón de arrepentimiento” visible. Consultar con un contador cómo facturar (por ejemplo, monotributo).</small></div><span class="tag t-urg">Urgente</span></li>
+    <li><div><b>Cuenta de Mercado Pago y link de pago</b><small>Definir a nombre de quién está la cuenta y crear el link de pago por $19.000. Con eso conectamos el botón “Pagar con Mercado Pago”.</small></div><span class="tag t-urg">Urgente</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">02</span>Decisiones que faltan</h2>
+  <ul class="check">
+    <li><div><b>¿Qué significa “LOCAR”?</b><small>Si es un acrónimo, lo mostramos letra por letra en la landing y en el ebook. Si no, contar de dónde sale el nombre.</small></div><span class="tag t-def">Definir</span></li>
+    <li><div><b>¿Nombramos una facultad o cátedra?</b><small>Decir “pensado para la cátedra de Patología de [facultad]” vende más, pero achica el público. La otra opción es dejarlo general.</small></div><span class="tag t-def">Definir</span></li>
+    <li><div><b>¿Landing A o B?</b><small>A: portadas hechas en Canva. B: portadas generadas en HTML. El resto es igual.</small></div><span class="tag t-def">Definir</span></li>
+    <li><div><b>¿Cómo se entrega el PDF?</b><small>Opciones: mail manual después de cada pago, mail automático (requiere la integración con Mercado Pago) o link a una carpeta.</small></div><span class="tag t-def">Definir</span></li>
+    <li><div><b>Contacto de soporte</b><small>Un mail o WhatsApp para consultas y para pedir la garantía.</small></div><span class="tag t-def">Definir</span></li>
+    <li><div><b>¿Precio de lanzamiento?</b><small>Opcional. Por ejemplo, un precio más bajo para los primeros 50, mostrando tachados los $19.000.</small></div><span class="tag t-def">Opcional</span></li>
+    <li><div><b>Dominio</b><small>Por ejemplo, metodolocar.com.ar. Se registra en NIC Argentina.</small></div><span class="tag t-def">Definir</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">03</span>Correcciones del texto del ebook</h2>
+  <p class="intro">Errores encontrados en el borrador actual.</p>
+  <table class="fix">
+    <thead><tr><th></th><th>Dice</th><th>Debería decir</th><th>Dónde</th></tr></thead>
+    <tbody>
+      <tr><td></td><td><span class="bad">Pront</span></td><td><span class="good">Prompt</span></td><td>Todas las veces que aparece (pág. 2, pasos 4 y 5, patología especial). Es el error más importante: le quita seriedad justo en la parte de IA.</td></tr>
+      <tr><td></td><td><span class="bad">resaltando lo lo importante</span></td><td><span class="good">resaltando lo importante</span></td><td>Paso 3</td></tr>
+      <tr><td></td><td><span class="bad">Patologia</span></td><td><span class="good">Patología</span></td><td>Pág. 2, título del libro</td></tr>
+      <tr><td></td><td><span class="bad">Guia</span> / <span class="bad">guias</span></td><td><span class="good">Guía</span> / <span class="good">guías</span></td><td>Pasos 4 y siguientes</td></tr>
+      <tr><td></td><td><span class="bad">Explicacion del metodo</span></td><td><span class="good">Explicación del método</span></td><td>Pág. 5</td></tr>
+      <tr><td></td><td><span class="bad">maxima</span></td><td><span class="good">máxima</span></td><td>Jerarquía del marcaje</td></tr>
+      <tr><td></td><td><span class="bad">salis reprobado</span></td><td><span class="good">salís reprobado</span></td><td>Prompt del paso 4 (“Error fatal”)</td></tr>
+      <tr><td></td><td><span class="bad">la ia</span></td><td><span class="good">la IA</span></td><td>Pasos 5 y patología especial</td></tr>
+      <tr><td></td><td><span class="bad">en documento aparte/extra/ o lo que sea</span></td><td><span class="good">Reemplazar por el bonus real</span></td><td>Página de “Preguntas frecuentes de primer parcial”</td></tr>
+      <tr><td></td><td>“se explica más adelante”</td><td><span class="good">Verificar que se explique</span></td><td>Paso 4: lo de imprimir simple faz</td></tr>
+      <tr><td></td><td>Numeración de “Consideraciones”</td><td><span class="good">Revisar que no se confunda con los pasos</span></td><td>Patología especial</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="n">04</span>Contenido que la landing promete y falta en el ebook</h2>
+  <p class="intro">La sección “Qué incluye” ya muestra estas partes. Tienen que existir antes de vender.</p>
+  <ul class="check">
+    <li><div><b>Ejemplo resuelto completo</b><small>Un tema real de punta a punta: fotos del Robbins marcado, la guía high-yield y la cara de atrás con los post-its. Si usan el ejemplo de cirrosis hepática que armamos al principio, Erick tiene que revisar el contenido médico.</small></div><span class="tag t-txt">Contenido</span></li>
+    <li><div><b>Pack de prompts</b><small>Los 3 prompts corregidos, listos para copiar, con un ejemplo de buena respuesta de la IA para cada uno.</small></div><span class="tag t-txt">Contenido</span></li>
+    <li><div><b>Bonus: preguntas del 1er parcial</b><small>Entre 25 y 40 preguntas de Patología General que más se toman, con respuesta corta.</small></div><span class="tag t-txt">Contenido</span></li>
+    <li><div><b>Bonus: plantilla imprimible</b><small>La cara de atrás de la guía con los 6 campos: concepto, etiología, clasificación, patogenia, morfología y clínica.</small></div><span class="tag t-txt">Contenido</span></li>
+    <li><div><b>Bonus: plan semanal</b><small>Cómo repartir los pasos en la semana antes de cada parcialito, y cuándo repasar.</small></div><span class="tag t-txt">Contenido</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">05</span>Mejoras recomendadas para el ebook</h2>
+  <ul class="check">
+    <li><div><b>Método para el final o integrador</b><small>Hoy cubre la cursada y los parciales de patología especial. Es la primera pregunta que va a hacer un comprador.</small></div><span class="tag t-def">Recomendado</span></li>
+    <li><div><b>Qué hacer si falta algo</b><small>Si no tengo el libro en papel, si no hubo teoría de un tema o si no dieron TP.</small></div><span class="tag t-def">Recomendado</span></li>
+    <li><div><b>Diseño del PDF</b><small>Portada (pueden usar la de la landing), tipografía consistente y cajas destacadas para los prompts.</small></div><span class="tag t-def">Recomendado</span></li>
+    <li><div><b>Aviso legal dentro del ebook</b><small>Que es material complementario, que no reemplaza la bibliografía y que no está afiliado a los autores ni a la editorial del Robbins.</small></div><span class="tag t-def">Recomendado</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">06</span>Ya está hecho</h2>
+  <p class="intro">Landing de venta (dos versiones) · 6 portadas · precio · checkout con identidad de Mercado Pago · logos de tarjetas · garantía · íconos de confianza · preguntas frecuentes · historia del autor (borrador) · guía para conseguir testimonios.</p>
+  <div class="links">
+    <b>LANDING A</b><a href="https://claude.ai/artifact/Ecyb7ekig5x3C4tNP9uU8w">claude.ai/artifact/Ecyb7ekig5x3C4tNP9uU8w</a>
+    <b>LANDING B</b><a href="https://claude.ai/artifact/GG8QMmbus3wFxpW6g2pmhd">claude.ai/artifact/GG8QMmbus3wFxpW6g2pmhd</a>
+    <b>REPO</b><a href="https://github.com/carloslucer/Erick-ebook-medicina">github.com/carloslucer/Erick-ebook-medicina</a>
+  </div>
+</section>
+
+<div class="note"><b>Importante:</b> el repositorio de GitHub es público y en su historial está el borrador del ebook. Conviene pasarlo a privado (Settings → General → Change visibility).</div>
+
+<footer class="end">Método LOCAR · Documento interno, no compartir con compradores.</footer>
+</body>
+</html>
