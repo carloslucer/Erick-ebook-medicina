@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#f6f4f8">
 <title>Método LOCAR · Versión B</title>
 <meta name="description" content="Método de estudio para Patología con el Robbins y la IA: sabé qué estudiar, reconocé los preparados y llegá al parcialito habiéndote evaluado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,24 +34,9 @@
 
   --s-1: .5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.5rem; --s-5: 4rem;
   --r: 10px;
+  color-scheme: light only;
   --w: 72rem;
   --read: 42rem;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #15111c; --surface: #1e1828; --ink: #efeaf6; --muted: #aaa1b8; --line: #352c44;
-    --hema: #b9a0f0; --hema-soft: #2b2140; --eosin: #f17aa3; --eosin-soft: #3a1c2a;
-    --mark: #e8d64a; --mark-ink: #1a1522; --skel: #2f2740;
-    --pending: #f5b056; --pending-soft: #33240f;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #15111c; --surface: #1e1828; --ink: #efeaf6; --muted: #aaa1b8; --line: #352c44;
-  --hema: #b9a0f0; --hema-soft: #2b2140; --eosin: #f17aa3; --eosin-soft: #3a1c2a;
-  --mark: #e8d64a; --mark-ink: #1a1522; --skel: #2f2740;
-  --pending: #f5b056; --pending-soft: #33240f;
-  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -161,7 +148,7 @@ section + section { border-top: 1px solid var(--line); }
 .trust b { color: var(--ink); font-family: var(--f-display); font-size: .98rem; }
 @media (max-width: 560px) { .trust { grid-template-columns: 1fr; } }
 
-/* Checkout con identidad de Mercado Pago: colores fijos en ambos temas */
+/* Checkout con identidad de Mercado Pago */
 .mp-panel { display: grid; gap: .9rem; justify-items: center; background: #ffffff; color: #333333; border: 1px solid #d8e9f5; border-top: 4px solid #009ee3; border-radius: 12px; padding: 1.25rem 1rem 1rem; box-shadow: 0 10px 30px -18px rgba(0,158,227,.6); }
 .mp-kicker { font-size: .85rem; color: #666666; }
 .mp-logo { width: 15rem; max-width: 100%; height: auto; }
