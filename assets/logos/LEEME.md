@@ -8,3 +8,5 @@ y se usan solo para indicar los medios de pago aceptados. Colores de marca aplic
 - Mastercard `#EB001B`
 - American Express `#2E77BC`
 - Diners Club `#004C97`
+
+`mercadopago-logo.png`: logo de Mercado Pago provisto por el equipo (290×77, recortado, fondo transparente). Para producción conviene usar el archivo oficial en alta resolución del kit de marca.
