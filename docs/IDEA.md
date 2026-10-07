@@ -35,6 +35,8 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 - [~] Testimonios: hay 3 ejemplos de formato. Reemplazarlos por reales antes de publicar (ver `docs/TESTIMONIOS.md`)
 - [x] Precio: **$19.000 ARS** (pago único)
 - [x] Plataforma de pago: **Mercado Pago** (botón e íconos en la landing)
+- [x] Bloque de pago con identidad de Mercado Pago (logo, colores, tarjetas) y garantía de 7 días
+- [ ] Confirmar plazo y condiciones de la garantía
 - [ ] Integración con Mercado Pago: link de pago o Checkout Pro + envío automático del PDF por mail
 - [ ] ¿Se nombra una facultad o cátedra en particular?
 - [ ] Dominio

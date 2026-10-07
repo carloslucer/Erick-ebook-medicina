@@ -7,3 +7,4 @@ y se usan solo para indicar los medios de pago aceptados. Colores de marca aplic
 - Visa `#1A1F71`
 - Mastercard `#EB001B`
 - American Express `#2E77BC`
+- Diners Club `#004C97`
