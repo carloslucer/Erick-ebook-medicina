@@ -25,6 +25,12 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 ## Imágenes
 
 - [x] Portadas del ebook y de los 5 extras en `assets/img/` (fuente editable: `assets/fuente/portadas.html`, se regeneran con `node scripts/render-portadas.mjs`)
+
+## Documentos PDF
+
+- `docs/Pendientes-Erick.pdf`: checklist de lo que tiene que corregir o definir Erick
+- `docs/Diagnostico-Ebook.pdf`: qué le falta al ebook, por prioridad
+- Fuentes editables en `docs/fuente/`; se regeneran con `node scripts/render-pdf.mjs <fuente> <salida.pdf>`
 - [ ] Foto real de Erick
 - [~] Portadas rehechas en Canva (`assets/img/canva/`): falta reemplazar las vistas previas por exportaciones en alta resolución
 

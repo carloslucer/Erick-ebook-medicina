@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Método LOCAR · Qué le falta al ebook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+@page { size: A4; margin: 16mm 18mm 18mm; }
+:root { --ink: #221b2e; --muted: #625a70; --line: #ddd6e6; --hema: #4b2a8a; --hema-soft: #ebe4f7; --eosin: #d9467a; --eosin-soft: #fbe3ec; --mark: #fff07a; --amber: #b45309; --amber-soft: #fdf0dc; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); font: 400 10.5pt/1.55 "Atkinson Hyperlegible", system-ui, sans-serif; }
+h1, h2 { font-family: "Bricolage Grotesque", system-ui, sans-serif; margin: 0; line-height: 1.12; }
+h1 { font-size: 28pt; font-weight: 800; }
+h2 { font-size: 14pt; font-weight: 800; }
+p, ul { margin: 0; }
+.kicker { font: 700 8pt/1 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--eosin); }
+.hl { background: linear-gradient(transparent 15%, var(--mark) 15%, var(--mark) 85%, transparent 85%); padding: 0 .1em; }
+header { display: grid; gap: 8pt; padding-bottom: 12pt; border-bottom: 2pt solid var(--hema); margin-bottom: 14pt; }
+header p { color: var(--muted); font-size: 10pt; }
+.item { display: grid; grid-template-columns: 30pt 1fr; gap: 10pt; padding: 11pt 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
+.num { font: 800 24pt/1 "Bricolage Grotesque", sans-serif; color: var(--hema); }
+.item.top .num { color: var(--eosin); }
+.body { display: grid; gap: 6pt; min-width: 0; }
+.head { display: flex; align-items: baseline; gap: 8pt; flex-wrap: wrap; }
+.tag { font: 700 7pt/1 "JetBrains Mono", monospace; letter-spacing: .06em; text-transform: uppercase; padding: 3pt 5pt; border-radius: 3pt; background: var(--hema-soft); color: var(--hema); }
+.item.top .tag { background: var(--eosin); color: #fff; }
+ul.pts { padding-left: 13pt; display: grid; gap: 4pt; }
+ul.pts li::marker { color: var(--eosin); }
+.q { font-style: italic; }
+code { font: 500 9pt "JetBrains Mono", monospace; background: var(--hema-soft); color: var(--hema); padding: 0 3pt; border-radius: 2pt; }
+footer { margin-top: 12pt; font-size: 8.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="kicker">Método LOCAR · Diagnóstico del ebook</span>
+  <h1>Qué le falta, <span class="hl">por prioridad</span></h1>
+  <p>Análisis del borrador actual del ebook antes de salir a vender. Ordenado de lo más importante a lo menos importante.</p>
+</header>
+
+<div class="item top">
+  <span class="num">1</span>
+  <div class="body">
+    <div class="head"><h2>Valor percibido</h2><span class="tag">Prioridad máxima</span></div>
+    <p>Hoy son unas 6 páginas, y la mayor parte del valor está en 3 prompts que se pueden copiar en un minuto. Si alguien paga y ve eso, va a sentir que pagó poco por mucho dinero. Hace falta sumar sustancia:</p>
+    <ul class="pts">
+      <li><b>Un ejemplo completo resuelto:</b> un tema real, por ejemplo cirrosis o glomerulonefritis, mostrado de punta a punta. Con fotos del Robbins marcado, la guía high-yield ya hecha y la cara de atrás con las notas adhesivas.</li>
+      <li><b>Ejemplos de lo que devuelve la IA,</b> para que el alumno sepa cómo se ve un buen resultado.</li>
+      <li><b>Las “Preguntas frecuentes del primer parcial”</b> que están pendientes. Hoy dice “en documento aparte”. Eso es un bonus ya listo para vender.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="item">
+  <span class="num">2</span>
+  <div class="body">
+    <div class="head"><h2>Partes del método que no están</h2><span class="tag">Contenido</span></div>
+    <ul class="pts">
+      <li><b>El final o integrador.</b> Solo cubre la cursada y los parciales de patología especial. El alumno va a preguntar por el final.</li>
+      <li><b>Un cronograma:</b> cuánto tiempo lleva cada paso y cómo se organiza la semana antes de un parcialito.</li>
+      <li><b>Repaso espaciado:</b> cuándo volver a las guías autoevaluables.</li>
+      <li><b>Qué hacer si falta algo:</b> si no tengo el libro en físico, si no hubo teoría de un tema o si no dieron TP.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="item">
+  <span class="num">3</span>
+  <div class="body">
+    <div class="head"><h2>Credibilidad del autor</h2><span class="tag">Confianza</span></div>
+    <p>No hay nada sobre quién es Erick. <span class="q">¿Aprobó con buena nota? ¿Es ayudante? ¿Cuántos compañeros lo usaron?</span> Sin esto, la landing no convence.</p>
+  </div>
+</div>
+
+<div class="item">
+  <span class="num">4</span>
+  <div class="body">
+    <div class="head"><h2>El nombre “LOCAR” no se explica</h2><span class="tag">Marca</span></div>
+    <p>Si es un acrónimo, hay que mostrarlo. Si no lo es, conviene darle un significado o una historia.</p>
+  </div>
+</div>
+
+<div class="item">
+  <span class="num">5</span>
+  <div class="body">
+    <div class="head"><h2>Correcciones y prolijidad</h2><span class="tag">Texto y diseño</span></div>
+    <ul class="pts">
+      <li><code>Pront</code> va como <code>Prompt</code>. Este error es importante porque le quita seriedad justo en la parte de IA.</li>
+      <li>También: <code>lo lo</code>, <code>Patologia</code> sin tilde, <code>Guia</code> y la numeración repetida en “Consideraciones”.</li>
+      <li>Falta diseño: portada, tipografía y cajas destacadas para los prompts.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="item">
+  <span class="num">6</span>
+  <div class="body">
+    <div class="head"><h2>Riesgo legal</h2><span class="tag">Legal</span></div>
+    <p>El método pide fotocopiar el Robbins y subir fotos a la IA, así que agregaría un descargo:</p>
+    <ul class="pts">
+      <li>Que el material es complementario y no reemplaza la bibliografía de la cátedra.</li>
+      <li>Que el ebook no incluye ni reproduce contenido del libro.</li>
+      <li>No usaría la portada ni el logo del Robbins en la landing.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="item">
+  <span class="num">7</span>
+  <div class="body">
+    <div class="head"><h2>Definir la universidad</h2><span class="tag">Público</span></div>
+    <p>Menciona “guías de laboratorio” y “parcialitos”. Si está pensado para una facultad en particular (UBA, UNC, UNLP…), decirlo en la landing convierte mucho mejor. Si es genérico, hay que aclarar que se adapta a cualquier cátedra.</p>
+  </div>
+</div>
+
+<footer>Método LOCAR · Documento interno.</footer>
+</body>
+</html>
