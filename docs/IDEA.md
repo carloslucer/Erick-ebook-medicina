@@ -34,7 +34,8 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 - [~] Historia de Erick: borrador escrito en la landing. Falta que Erick lo revise y complete facultad, nota, año y foto
 - [~] Testimonios: hay 3 ejemplos de formato. Reemplazarlos por reales antes de publicar (ver `docs/TESTIMONIOS.md`)
 - [x] Precio: **$19.000 ARS** (pago único)
-- [ ] Plataforma de pago (Mercado Pago / Hotmart)
+- [x] Plataforma de pago: **Mercado Pago** (botón e íconos en la landing)
+- [ ] Integración con Mercado Pago: link de pago o Checkout Pro + envío automático del PDF por mail
 - [ ] ¿Se nombra una facultad o cátedra en particular?
 - [ ] Dominio
 

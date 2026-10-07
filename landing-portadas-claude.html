@@ -153,6 +153,20 @@ section + section { border-top: 1px solid var(--line); }
 .bundle img:nth-child(3) { transform: translateX(-15%) rotate(5deg); }
 .bundle img:nth-child(4) { transform: translateX(-50%) rotate(0deg); width: 11rem; z-index: 1; }
 
+/* Pago y confianza */
+.mp-btn { display: flex; width: 100%; }
+.mp-note { display: flex; align-items: center; justify-content: center; gap: .45rem; font-size: .9rem; color: var(--muted); }
+.mp-note svg, .trust svg, .methods svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.mp-note b { color: var(--ink); }
+.methods { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; padding: 0; margin: 0; }
+.methods li { list-style: none; display: inline-flex; align-items: center; gap: .4rem; font-size: .82rem; color: var(--ink); background: var(--hema-soft); border-radius: 999px; padding: .4em .8em; }
+.methods li svg { color: var(--hema); width: 1.05rem; height: 1.05rem; }
+.trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); max-width: 46rem; margin: var(--s-3) auto 0; padding: 0; }
+.trust li { list-style: none; display: flex; flex-direction: column; align-items: center; text-align: center; gap: .4rem; font-size: .88rem; color: var(--muted); }
+.trust li svg { width: 2.4rem; height: 2.4rem; padding: .5rem; border-radius: 50%; background: var(--hema-soft); color: var(--hema); stroke-width: 1.5; }
+.trust b { color: var(--ink); font-family: var(--f-display); font-size: .98rem; }
+@media (max-width: 560px) { .trust { grid-template-columns: 1fr; } }
+
 /* Historia del autor */
 .story { display: grid; grid-template-columns: 14rem 1fr; gap: var(--s-4); align-items: start; }
 .story > * { min-width: 0; }
@@ -233,7 +247,7 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
         <a class="btn" href="#comprar">Quiero el Método LOCAR · $19.000</a>
         <a class="btn ghost" href="#incluye">Ver qué incluye</a>
       </div>
-      <p class="note">Ebook en PDF + bonus. Lo recibís al instante.</p>
+      <p class="note">Ebook en PDF + bonus. Pagás con Mercado Pago y lo recibís al instante.</p>
     </div>
     <img class="hero-cover" src="assets/img/ebook.png" width="900" height="1200" alt="Portada del ebook Método LOCAR">
   </div>
@@ -375,9 +389,21 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
         <li>Ejemplo resuelto</li>
         <li>Bonus: preguntas del 1er parcial, plantilla imprimible y plan semanal</li>
       </ul>
-      <a class="btn" href="#comprar">Comprar ahora</a>
-      <span class="pend">Pendiente: plataforma de pago</span>
+      <a class="btn mp-btn" href="#comprar" id="mp-checkout" data-mp-link="">Pagar con Mercado Pago</a>
+      <p class="mp-note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><span>Pago seguro procesado por <b>Mercado Pago</b></span></p>
+      <ul class="methods" aria-label="Medios de pago">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Tarjeta de crédito</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Tarjeta de débito</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a1 1 0 0 1-1-1z"/><path d="M4 7.5 15 4.5v3M16 13.5h.01"/></svg>Dinero en cuenta</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6.5" width="19" height="11" rx="1.5"/><circle cx="12" cy="12" r="2.5"/></svg>Efectivo (Rapipago / Pago Fácil)</li>
+      </ul>
+      <span class="pend" style="justify-self:center">Pendiente: link de pago de Mercado Pago</span>
     </div>
+    <ul class="trust">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg><b>Pago protegido</b>No compartís tus datos de tarjeta con nosotros</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg><b>Acceso inmediato</b>Te llega el link de descarga por mail</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><b>Compra única</b>Sin suscripciones ni cobros mensuales</li>
+    </ul>
   </div>
 </section>
 
@@ -391,7 +417,8 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
       <details><summary>¿Qué necesito para usarlo?</summary><p>El Robbins en papel o fotocopiado, las guías de laboratorio de tu cátedra y una IA de tu elección.</p></details>
       <details><summary>¿Qué IA tengo que usar?</summary><p>La que quieras. Funciona con ChatGPT, Gemini o Claude, incluso en las versiones gratuitas que aceptan fotos.</p></details>
       <details><summary>¿Reemplaza la bibliografía?</summary><p>No. Es un método para estudiar mejor la bibliografía de tu cátedra. No incluye ni reproduce contenido del Robbins.</p></details>
-      <details><summary>¿Cómo lo recibo?</summary><p>Después del pago te llega un mail con el link de descarga.</p></details>
+      <details><summary>¿Cómo pago?</summary><p>Con Mercado Pago: tarjeta de crédito o débito, dinero en cuenta o efectivo en Rapipago y Pago Fácil.</p></details>
+      <details><summary>¿Cómo lo recibo?</summary><p>Cuando se acredita el pago te llega un mail con el link de descarga. Con tarjeta o dinero en cuenta es al instante; en efectivo puede tardar hasta que se acredite.</p></details>
     </div>
   </div>
 </section>
