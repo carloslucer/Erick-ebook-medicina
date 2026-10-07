@@ -26,7 +26,7 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 
 - [x] Portadas del ebook y de los 5 extras en `assets/img/` (fuente editable: `assets/fuente/portadas.html`, se regeneran con `node scripts/render-portadas.mjs`)
 - [ ] Foto real de Erick
-- [ ] Opcional: rehacer las portadas en Canva (conectar Canva en claude.ai)
+- [~] Portadas rehechas en Canva (`assets/img/canva/`): falta reemplazar las vistas previas por exportaciones en alta resolución
 
 ## Pendiente: lo tienen que definir ustedes
 

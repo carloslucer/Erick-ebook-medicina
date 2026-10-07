@@ -144,10 +144,10 @@ section + section { border-top: 1px solid var(--line); }
 .incl p { color: var(--muted); }
 
 /* Portadas */
-.hero-cover { width: 100%; max-width: 26rem; height: auto; justify-self: center; border-radius: 6px; box-shadow: 0 40px 70px -30px color-mix(in srgb, var(--hema) 60%, transparent), 0 2px 0 var(--line); transform: rotate(2deg); }
-.thumb { width: 100%; height: auto; aspect-ratio: 3 / 4; border-radius: 6px; box-shadow: 0 16px 30px -18px rgba(0,0,0,.45); margin-bottom: var(--s-1); }
+.hero-cover { width: 100%; max-width: 24rem; height: auto; justify-self: center; border-radius: 6px; box-shadow: 0 40px 70px -30px color-mix(in srgb, var(--hema) 60%, transparent), 0 2px 0 var(--line); transform: rotate(2deg); }
+.thumb { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; object-fit: cover; border-radius: 6px; box-shadow: 0 16px 30px -18px rgba(0,0,0,.45); margin-bottom: var(--s-1); }
 .bundle { position: relative; height: 15rem; max-width: 100%; margin-bottom: var(--s-2); }
-.bundle img { position: absolute; left: 50%; bottom: 0; width: 9.5rem; height: auto; border-radius: 4px; box-shadow: 0 18px 30px -14px rgba(0,0,0,.5); }
+.bundle img { position: absolute; left: 50%; bottom: 0; width: 9.5rem; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; border-radius: 4px; box-shadow: 0 18px 30px -14px rgba(0,0,0,.5); }
 .bundle img:nth-child(1) { transform: translateX(-125%) rotate(-12deg); }
 .bundle img:nth-child(2) { transform: translateX(-85%) rotate(-5deg); }
 .bundle img:nth-child(3) { transform: translateX(-15%) rotate(5deg); }
@@ -235,7 +235,7 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
       </div>
       <p class="note">Ebook en PDF + bonus. Lo recibís al instante.</p>
     </div>
-    <img class="hero-cover" src="assets/img/ebook.png" width="900" height="1200" alt="Portada del ebook Método LOCAR">
+    <img class="hero-cover" src="assets/img/canva/ebook.png" width="375" height="533" alt="Portada del ebook Método LOCAR">
   </div>
 </section>
 
@@ -306,12 +306,12 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
     <span class="eyebrow">Qué incluye</span>
     <h2>Todo lo que te llevás</h2>
     <ul class="incl">
-      <li class="core"><img class="thumb" src="assets/img/ebook.png" width="900" height="1200" alt="Portada: Ebook Método LOCAR" loading="lazy"><span class="tipo">Principal</span><h3>Ebook Método LOCAR</h3><p>Las dos fases del método explicadas paso a paso.</p></li>
-      <li><img class="thumb" src="assets/img/prompts.png" width="900" height="1200" alt="Portada: Pack de prompts" loading="lazy"><span class="tipo">Incluido</span><h3>Pack de prompts</h3><p>Listos para copiar y pegar en la IA que uses.</p></li>
-      <li><img class="thumb" src="assets/img/ejemplo.png" width="900" height="1200" alt="Portada: Ejemplo resuelto" loading="lazy"><span class="tipo">Incluido</span><h3>Ejemplo resuelto</h3><p>Un tema real hecho de punta a punta con el método.</p></li>
-      <li><img class="thumb" src="assets/img/preguntas.png" width="900" height="1200" alt="Portada: Preguntas del 1er parcial" loading="lazy"><span class="tipo">Bonus</span><h3>Preguntas del 1er parcial</h3><p>Las que más se toman en Patología General, con respuesta.</p></li>
-      <li><img class="thumb" src="assets/img/plantilla.png" width="900" height="1200" alt="Portada: Plantilla imprimible" loading="lazy"><span class="tipo">Bonus</span><h3>Plantilla imprimible</h3><p>Para armar tus guías autoevaluables de laboratorio.</p></li>
-      <li><img class="thumb" src="assets/img/plan.png" width="900" height="1200" alt="Portada: Plan semanal" loading="lazy"><span class="tipo">Bonus</span><h3>Plan semanal</h3><p>Cómo organizar la semana antes de cada parcialito.</p></li>
+      <li class="core"><img class="thumb" src="assets/img/canva/ebook.png" width="900" height="1200" alt="Portada: Ebook Método LOCAR" loading="lazy"><span class="tipo">Principal</span><h3>Ebook Método LOCAR</h3><p>Las dos fases del método explicadas paso a paso.</p></li>
+      <li><img class="thumb" src="assets/img/canva/prompts.png" width="900" height="1200" alt="Portada: Pack de prompts" loading="lazy"><span class="tipo">Incluido</span><h3>Pack de prompts</h3><p>Listos para copiar y pegar en la IA que uses.</p></li>
+      <li><img class="thumb" src="assets/img/canva/ejemplo.png" width="900" height="1200" alt="Portada: Ejemplo resuelto" loading="lazy"><span class="tipo">Incluido</span><h3>Ejemplo resuelto</h3><p>Un tema real hecho de punta a punta con el método.</p></li>
+      <li><img class="thumb" src="assets/img/canva/preguntas.png" width="900" height="1200" alt="Portada: Preguntas del 1er parcial" loading="lazy"><span class="tipo">Bonus</span><h3>Preguntas del 1er parcial</h3><p>Las que más se toman en Patología General, con respuesta.</p></li>
+      <li><img class="thumb" src="assets/img/canva/plantilla.png" width="900" height="1200" alt="Portada: Plantilla imprimible" loading="lazy"><span class="tipo">Bonus</span><h3>Plantilla imprimible</h3><p>Para armar tus guías autoevaluables de laboratorio.</p></li>
+      <li><img class="thumb" src="assets/img/canva/plan.png" width="900" height="1200" alt="Portada: Plan semanal" loading="lazy"><span class="tipo">Bonus</span><h3>Plan semanal</h3><p>Cómo organizar la semana antes de cada parcialito.</p></li>
     </ul>
   </div>
 </section>
@@ -364,7 +364,7 @@ footer { padding-block: var(--s-4); color: var(--muted); font-size: .85rem; bord
   <div class="wrap">
     <div class="price">
       <div class="bundle" aria-hidden="true">
-        <img src="assets/img/plan.png" alt=""><img src="assets/img/preguntas.png" alt=""><img src="assets/img/prompts.png" alt=""><img src="assets/img/ebook.png" alt="">
+        <img src="assets/img/canva/plan.png" alt=""><img src="assets/img/canva/preguntas.png" alt=""><img src="assets/img/canva/prompts.png" alt=""><img src="assets/img/canva/ebook.png" alt="">
       </div>
       <span class="eyebrow">Accedé hoy</span>
       <div class="amt">$19.000 <small>ARS</small></div>
