@@ -33,6 +33,7 @@ La landing es **solo de venta**: muestra resultados y qué incluye, no el conten
 - Fuentes editables en `docs/fuente/`; se regeneran con `node scripts/render-pdf.mjs <fuente> <salida.pdf>`
 - [ ] Foto real de Erick
 - [~] Portadas rehechas en Canva (`assets/img/canva/`): falta reemplazar las vistas previas por exportaciones en alta resolución
+- [x] Landing A pulida con impeccable (crítica 24/36): celular, confianza al pagar, contraste, portadas WebP
 
 ## Pendiente: lo tienen que definir ustedes
 
