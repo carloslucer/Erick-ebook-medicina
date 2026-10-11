@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T00:00:00Z",
+  "title": "Design System: Método LOCAR",
+  "extensions": {
+    "colorMeta": {
+      "slide-glass": { "role": "neutral", "displayName": "Vidrio de Portaobjetos", "tonalRamp": ["#26222c", "#3d3846", "#57515f", "#736c7c", "#938c9b", "#b6b0bd", "#dad5df", "#f6f4f8"] },
+      "ink": { "role": "neutral", "displayName": "Tinta", "tonalRamp": ["#120d19", "#221b2e", "#3a3047", "#544963", "#6f6380", "#8e839d", "#b0a8bc", "#d6d1dd"] },
+      "hematoxylin": { "role": "primary", "displayName": "Violeta Hematoxilina", "tonalRamp": ["#1d0f3a", "#2f1960", "#4b2a8a", "#6545a8", "#8466c2", "#a68ed8", "#c9b9ea", "#ebe4f7"] },
+      "eosin": { "role": "secondary", "displayName": "Rosa Eosina", "tonalRamp": ["#4a0f27", "#781a42", "#a82a5c", "#d9467a", "#e66f97", "#ef97b4", "#f6bfd1", "#fbe3ec"] },
+      "highlighter": { "role": "tertiary", "displayName": "Amarillo Resaltador", "tonalRamp": ["#4a4200", "#6f6400", "#958700", "#bcab12", "#dccb2e", "#efdf4f", "#fff07a", "#fffbd6"] },
+      "pending-amber": { "role": "neutral", "displayName": "Ámbar Pendiente", "tonalRamp": ["#3d1c02", "#5e2c04", "#843f06", "#b45309", "#d87422", "#ec9a52", "#f6c58f", "#fdf0dc"] },
+      "mp-blue": { "role": "neutral", "displayName": "Celeste Mercado Pago (solo checkout)" },
+      "mp-navy": { "role": "neutral", "displayName": "Azul Mercado Pago (solo checkout)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Solo el titular del hero." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de sección." },
+      "title": { "displayName": "Title", "purpose": "Títulos de tarjetas." },
+      "body": { "displayName": "Body", "purpose": "Texto corrido, máximo 42rem de ancho." },
+      "label": { "displayName": "Rótulo", "purpose": "Rótulos de sección en mayúsculas espaciadas." }
+    },
+    "shadows": [
+      { "name": "libro-apoyado", "value": "0 40px 70px -30px color-mix(in srgb, #4b2a8a 60%, transparent)", "purpose": "Portada del ebook en el hero." },
+      { "name": "miniatura", "value": "0 16px 30px -18px rgba(0,0,0,.45)", "purpose": "Portadas chicas en Qué incluye y en el bloque de precio." }
+    ],
+    "motion": [
+      { "name": "lift", "value": "transform .15s ease", "purpose": "Botones suben 2px al pasar el mouse." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "860px" },
+      { "name": "phone", "value": "560px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal de compra o navegación.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Quiero el Método LOCAR · $19.000</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; font: 700 1rem/1 'Bricolage Grotesque', system-ui, sans-serif; text-decoration: none; border-radius: 999px; padding: .95em 1.6em; border: 2px solid #4b2a8a; background: #4b2a8a; color: #f6f4f8; transition: transform .15s ease; } .ds-btn:hover { transform: translateY(-2px); } .ds-btn:focus-visible { outline: 3px solid #d9467a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Botón secundario",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Acción secundaria, por ejemplo ver qué incluye.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Ver qué incluye</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; font: 700 1rem/1 'Bricolage Grotesque', system-ui, sans-serif; text-decoration: none; border-radius: 999px; padding: .95em 1.6em; border: 2px solid #4b2a8a; background: transparent; color: #4b2a8a; transition: transform .15s ease; } .ds-btn-ghost:hover { transform: translateY(-2px); } .ds-btn-ghost:focus-visible { outline: 3px solid #d9467a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Botón Mercado Pago",
+      "kind": "button",
+      "refersTo": "button-mercadopago",
+      "description": "Solo dentro del recuadro de pago.",
+      "html": "<a class=\"ds-btn-mp\" href=\"#\">Pagar $19.000 con Mercado Pago</a>",
+      "css": ".ds-btn-mp { display: flex; align-items: center; justify-content: center; min-height: 3.25rem; padding: .8rem 1rem; border-radius: 8px; background: #009ee3; color: #fff; font: 700 1.05rem/1.2 'Nunito', system-ui, sans-serif; text-decoration: none; transition: background .15s ease; } .ds-btn-mp:hover { background: #0089c7; } .ds-btn-mp:focus-visible { outline: 3px solid #2d3277; outline-offset: 3px; }"
+    },
+    {
+      "name": "Tarjeta",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Contenedor plano para dolores, fases, qué incluye y testimonios.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-card-k\">Bonus</span><h3>Plan semanal</h3><p>Cómo organizar la semana antes de cada parcialito.</p></div>",
+      "css": ".ds-card { background: #fff; border: 1px solid #ddd6e6; border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; gap: .5rem; color: #221b2e; font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; } .ds-card h3 { margin: 0; font: 700 1.2rem/1.1 'Bricolage Grotesque', system-ui, sans-serif; } .ds-card p { margin: 0; color: #625a70; } .ds-card-k { font: 600 .72rem/1 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .1em; color: #625a70; }"
+    },
+    {
+      "name": "Etiqueta pendiente",
+      "kind": "chip",
+      "refersTo": "chip-pending",
+      "description": "Marca lo que falta definir.",
+      "html": "<span class=\"ds-pend\">Pendiente: link de pago</span>",
+      "css": ".ds-pend { display: inline-flex; align-items: center; font: 600 .72rem/1.2 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #b45309; background: #fdf0dc; border: 1px dashed #b45309; border-radius: 999px; padding: .3em .75em; }"
+    },
+    {
+      "name": "Frase resaltada",
+      "kind": "custom",
+      "description": "Gesto de marca: resaltado amarillo con subrayado rosa, una vez por pantalla.",
+      "html": "<span class=\"ds-max\">con un método</span>",
+      "css": ".ds-max { font: 800 2rem/1.1 'Bricolage Grotesque', system-ui, sans-serif; background: linear-gradient(transparent 12%, #fff07a 12%, #fff07a 88%, transparent 88%); color: #221b2e; padding-inline: .12em; text-decoration: underline; text-decoration-color: #d9467a; text-decoration-thickness: .14em; text-underline-offset: .16em; }"
+    },
+    {
+      "name": "Navegación",
+      "kind": "nav",
+      "description": "Barra superior pegajosa y translúcida.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">LOCAR<span>.</span></a><a class=\"ds-nav-btn\" href=\"#\">Quiero el método</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; padding: .75rem 16px; background: rgba(246,244,248,.88); border-bottom: 1px solid #ddd6e6; } .ds-brand { font: 800 1.15rem/1 'Bricolage Grotesque', system-ui, sans-serif; text-decoration: none; color: #221b2e; } .ds-brand span { color: #d9467a; } .ds-nav-btn { font: 700 .9rem/1 'Bricolage Grotesque', system-ui, sans-serif; text-decoration: none; border-radius: 999px; padding: .6em 1.1em; background: #4b2a8a; color: #f6f4f8; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El preparado y el resaltador",
+    "overview": "La landing se ve como una mesa de estudio de Patología: el fondo es el vidrio claro de un portaobjetos, el color sale de la tinción H&E (violeta hematoxilina para lo importante, rosa eosina para señalar) y la marca del método es el gesto que todo estudiante conoce, resaltar y subrayar. Ese gesto no es decoración: es la jerarquía del propio método llevada a la tipografía.\n\nLa personalidad es clara y confiable. Pocas superficies, mucho aire, una sola columna de lectura con bloques que se abren a grilla cuando hay que comparar (dolores, qué incluye, testimonios). El momento más cargado visualmente es la portada del ebook en el hero y el bloque de compra; todo lo demás queda en calma para que esos dos lugares manden.\n\nEl checkout adopta la identidad de Mercado Pago dentro de un recuadro blanco propio: es la única zona donde se usan colores ajenos a la paleta, y es a propósito, para que el pago se reconozca.",
+    "keyCharacteristics": [
+      "Tema claro fijo, sin modo oscuro.",
+      "Paleta H&E: violeta para acción y jerarquía, rosa para señalar, amarillo resaltador para la frase clave.",
+      "Grotesca expresiva en titulares, una tipografía de alta legibilidad en el texto, monoespaciada para rótulos.",
+      "Tarjetas blancas planas con borde fino; sombras solo en portadas.",
+      "Lo pendiente se marca con ámbar y borde punteado, nunca se disimula."
+    ],
+    "rules": [
+      { "name": "The Resaltador Escaso Rule", "body": "El amarillo aparece como máximo una vez por pantalla, detrás de la frase que el visitante no se puede perder. Si todo está resaltado, nada lo está, igual que en el método.", "section": "colors" },
+      { "name": "The Ámbar Es Pendiente Rule", "body": "El ámbar y el borde punteado significan \"falta definir\". No se usan como decoración; cuando el dato se completa, el ámbar desaparece.", "section": "colors" },
+      { "name": "The Checkout Prestado Rule", "body": "El azul y celeste de Mercado Pago viven solo dentro del recuadro de pago. Fuera de él, la paleta es H&E.", "section": "colors" },
+      { "name": "The Rótulo Rule", "body": "La monoespaciada solo rotula; nunca se usa para frases que haya que leer.", "section": "typography" },
+      { "name": "The Plano Por Defecto Rule", "body": "Si no es un objeto (un libro, un comprobante de pago), no lleva sombra.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar el violeta hematoxilina (#4b2a8a) para toda acción principal.",
+      "Do resaltar en amarillo una sola frase clave por pantalla.",
+      "Do mantener las tarjetas planas, blancas y con borde fino.",
+      "Do marcar lo que falta definir en ámbar con borde punteado hasta que se complete.",
+      "Do mantener el tema claro en todas las pantallas."
+    ],
+    "donts": [
+      "Don't usar los colores de Mercado Pago fuera del recuadro de pago.",
+      "Don't usar la portada ni el logo del Robbins.",
+      "Don't agregar modo oscuro.",
+      "Don't poner sombras en tarjetas de texto."
+    ]
+  }
+}
