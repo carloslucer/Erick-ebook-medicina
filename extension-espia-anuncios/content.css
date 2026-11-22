@@ -10,6 +10,7 @@
 @keyframes ea-flash { 0%, 60% { box-shadow: 0 0 0 6px #facc15; } 100% { box-shadow: none; } }
 
 .ea-badge {
+  contain: layout style;
   display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
   margin: 6px; padding: 6px 8px; border-radius: 8px;
   background: #fff; border: 2px solid var(--ea-c);
@@ -43,7 +44,10 @@
 #ea-panel .ea-head {
   display: flex; justify-content: space-between; align-items: center;
   padding: 10px 12px; background: #166534; color: #fff;
+  cursor: grab; user-select: none; touch-action: none;
 }
+#ea-panel.ea-arrastrando { opacity: .92; box-shadow: 0 18px 50px rgba(15, 23, 42, .35); }
+#ea-panel.ea-arrastrando .ea-head { cursor: grabbing; }
 #ea-panel .ea-head button {
   background: rgba(255,255,255,.15); color: #fff; border: 0; border-radius: 6px;
   width: 26px; height: 24px; cursor: pointer; font-size: 16px;

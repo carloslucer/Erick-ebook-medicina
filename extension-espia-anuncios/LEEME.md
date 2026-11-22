@@ -11,7 +11,7 @@ Analiza la [Biblioteca de Anuncios de Meta](https://www.facebook.com/ads/library
 
 ## Cómo usarla
 1. Tocá el ícono → escribí una palabra clave (o usá una búsqueda rápida: *ebook, guía pdf, hotmart, kiwify…*) → elegí país → **Abrir búsqueda**.
-2. En la Biblioteca aparece el panel **Espía de Anuncios** a la derecha y cada anuncio muestra su insignia.
+2. En la Biblioteca aparece el panel **Espía de Anuncios** y cada anuncio muestra su insignia. El panel se mueve arrastrando la barra verde (doble clic la devuelve a su lugar).
 3. Tocá **Cargar más (auto-scroll)** para que baje solo y analice cientos de anuncios.
 4. Filtrá por *mín. días activo* (recomendado: 14 o 30), *mín. variaciones* y *solo productos digitales*.
 5. Para empezar otra búsqueda tocá **🗑 Limpiar** (al cambiar la búsqueda también se limpia solo). Los guardados ☆ no se borran.
