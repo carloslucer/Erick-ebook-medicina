@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Espía de Anuncios – Productos Ganadores",
   "short_name": "Espía Anuncios",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Analiza la Biblioteca de Anuncios de Meta y puntúa cada anuncio para encontrar ebooks y productos digitales ganadores.",
   "icons": {
     "16": "icons/icon16.png",

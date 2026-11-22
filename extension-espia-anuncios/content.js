@@ -8,6 +8,9 @@
   let guardados = {};
   let filtros = { minDias: 0, minVar: 1, soloDigital: false, soloActivos: false, orden: "puntaje" };
   let autoScroll = null;
+  // IDs que estaban en pantalla al tocar "Limpiar": no se vuelven a contar
+  // aunque Facebook todavía no los haya sacado de la página.
+  let ignorados = new Set();
 
   // ---------- Detección de tarjetas ----------
   function contarIds(el) {
@@ -98,7 +101,7 @@
       if (vistas.has(card)) continue;
       vistas.add(card);
       const ad = leerTarjeta(card);
-      if (!ad) continue;
+      if (!ad || ignorados.has(ad.id)) continue;
       ad._card = card;
       anuncios.set(ad.id, { ...(anuncios.get(ad.id) || {}), ...ad });
     }
@@ -199,6 +202,7 @@
         <button data-a="scroll">▶ Cargar más (auto‑scroll)</button>
         <button data-a="csv">⬇ Exportar CSV</button>
         <button data-a="rescan">↻ Re‑escanear</button>
+        <button data-a="limpiar" title="Borra los resultados para empezar una búsqueda nueva">🗑 Limpiar</button>
         <button data-a="diag" title="Copia el texto de la página para enviarlo y ajustar la detección">🩺 Copiar diagnóstico</button>
       </div>
       <ol class="ea-lista"></ol>
@@ -217,7 +221,25 @@
   });
   panel.querySelector('[data-a="csv"]').onclick = () =>
     descargarCSV([...anuncios.values()].filter(pasaFiltros).sort(comparar), "anuncios-biblioteca");
-  panel.querySelector('[data-a="rescan"]').onclick = escanear;
+  panel.querySelector('[data-a="rescan"]').onclick = () => {
+    ignorados.clear();
+    escanear();
+  };
+  panel.querySelector('[data-a="limpiar"]').onclick = () => limpiar(true);
+
+  // Borra resultados, insignias y marcas de la página. Los guardados (☆) no se tocan.
+  function limpiar(ignorarVisibles) {
+    if (autoScroll) panel.querySelector('[data-a="scroll"]').click();
+    ignorados = new Set(ignorarVisibles ? anuncios.keys() : []);
+    for (const ad of anuncios.values()) {
+      const c = ad._card;
+      if (!c) continue;
+      c.querySelector(":scope > .ea-badge")?.remove();
+      c.classList.remove("ea-oculto", "ea-ganador", "ea-prometedor", "ea-testeo", "ea-frio", "ea-flash");
+    }
+    anuncios.clear();
+    pintarLista();
+  }
   panel.querySelector('[data-a="diag"]').onclick = async (e) => {
     const texto = [
       "URL: " + location.href,
@@ -316,7 +338,7 @@
   setInterval(() => {
     if (location.href !== ultimaUrl) {
       ultimaUrl = location.href;
-      anuncios.clear();
+      limpiar(false);
       setTimeout(escanear, 1200);
     }
   }, 1000);

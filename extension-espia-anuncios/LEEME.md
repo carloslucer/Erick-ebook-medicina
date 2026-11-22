@@ -14,7 +14,8 @@ Analiza la [Biblioteca de Anuncios de Meta](https://www.facebook.com/ads/library
 2. En la Biblioteca aparece el panel **Espía de Anuncios** a la derecha y cada anuncio muestra su insignia.
 3. Tocá **Cargar más (auto-scroll)** para que baje solo y analice cientos de anuncios.
 4. Filtrá por *mín. días activo* (recomendado: 14 o 30), *mín. variaciones* y *solo productos digitales*.
-5. Tocá ☆ para guardar los que quieras modelar. En el popup podés anotar el ángulo, la promesa y el precio, y exportar todo a CSV.
+5. Para empezar otra búsqueda tocá **🗑 Limpiar** (al cambiar la búsqueda también se limpia solo). Los guardados ☆ no se borran.
+6. Tocá ☆ para guardar los que quieras modelar. En el popup podés anotar el ángulo, la promesa y el precio, y exportar todo a CSV.
 
 ## Cómo se calcula el puntaje
 | Señal | Puntos | Por qué |
