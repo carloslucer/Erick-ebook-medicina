@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Espía de Anuncios – Productos Ganadores",
+  "short_name": "Espía Anuncios",
+  "version": "1.0.0",
+  "description": "Analiza la Biblioteca de Anuncios de Meta y puntúa cada anuncio para encontrar ebooks y productos digitales ganadores.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Espía de Anuncios",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.facebook.com/ads/library/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/ads/library/*"],
+      "js": ["parser.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

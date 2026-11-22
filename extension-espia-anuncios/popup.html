@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Espía de Anuncios</title>
+<style>
+  body { width: 380px; margin: 0; font: 13px/1.4 system-ui, sans-serif; color: #0f172a; background: #fff; }
+  header { background: #166534; color: #fff; padding: 12px 14px; }
+  header h1 { margin: 0; font-size: 15px; }
+  header p { margin: 2px 0 0; opacity: .85; font-size: 12px; }
+  section { padding: 12px 14px; border-bottom: 1px solid #e2e8f0; }
+  h2 { margin: 0 0 8px; font-size: 13px; }
+  form { display: grid; gap: 6px; }
+  .fila { display: flex; gap: 6px; }
+  input, select { padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 6px; font: inherit; flex: 1; min-width: 0; }
+  button { padding: 7px 10px; border-radius: 8px; border: 1px solid #166534; background: #166534; color: #fff; font: 600 12px system-ui; cursor: pointer; }
+  button.sec { background: #f0fdf4; color: #166534; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chips button { background: #f1f5f9; color: #334155; border-color: #e2e8f0; font-weight: 500; padding: 4px 8px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 260px; overflow-y: auto; }
+  li { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; }
+  li .top { display: flex; gap: 6px; align-items: center; }
+  li .score { background: #16a34a; color: #fff; border-radius: 6px; padding: 2px 6px; font-weight: 800; }
+  li b { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  li small { color: #64748b; display: block; margin: 2px 0; }
+  li textarea { width: 100%; box-sizing: border-box; font: inherit; border: 1px solid #e2e8f0; border-radius: 6px; padding: 4px; resize: vertical; min-height: 30px; }
+  li a { color: #166534; font-size: 12px; margin-right: 8px; }
+  li .x { background: none; border: 0; color: #94a3b8; padding: 0 4px; font-size: 14px; }
+  .vacio { color: #64748b; }
+  .acciones { display: flex; gap: 6px; margin-top: 8px; }
+  details { color: #475569; font-size: 12px; }
+  details ul { max-height: none; gap: 2px; list-style: disc; padding-left: 18px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔎 Espía de Anuncios</h1>
+  <p>Encontrá ebooks y productos digitales ganadores para modelar</p>
+</header>
+
+<section>
+  <h2>Buscar en la Biblioteca de Anuncios</h2>
+  <form id="buscar">
+    <input id="q" placeholder="Palabra clave (ej. ebook, guía pdf, hotmart)" required>
+    <div class="fila">
+      <select id="pais">
+        <option value="AR">Argentina</option><option value="MX">México</option>
+        <option value="CO">Colombia</option><option value="CL">Chile</option>
+        <option value="PE">Perú</option><option value="ES">España</option>
+        <option value="US">Estados Unidos</option><option value="BR">Brasil</option>
+        <option value="ALL">Todos los países</option>
+      </select>
+      <select id="estado">
+        <option value="active">Solo activos</option>
+        <option value="all">Activos e inactivos</option>
+      </select>
+    </div>
+    <button type="submit">Abrir búsqueda</button>
+  </form>
+  <p style="margin:8px 0 4px;color:#64748b;font-size:12px">Búsquedas rápidas:</p>
+  <div class="chips" id="chips"></div>
+</section>
+
+<section>
+  <h2>Guardados para modelar (<span id="n">0</span>)</h2>
+  <ul id="lista"></ul>
+  <div class="acciones">
+    <button class="sec" id="csv">⬇ Exportar CSV</button>
+    <button class="sec" id="borrar">Vaciar</button>
+  </div>
+</section>
+
+<section>
+  <details>
+    <summary>¿Cómo se calcula el puntaje?</summary>
+    <ul>
+      <li><b>Días activo</b> (hasta 45 pts): nadie paga un anuncio un mes si no vende.</li>
+      <li><b>Variaciones</b> del mismo anuncio (hasta 25): está escalando.</li>
+      <li><b>Anuncios del mismo anunciante</b> en la búsqueda (hasta 15).</li>
+      <li><b>Señales de producto digital</b>: Hotmart, Kiwify, “ebook”, “pdf”… (hasta 10).</li>
+      <li>Activo +5. Inactivos se penalizan (sirven de referencia).</li>
+      <li>🔥 70+ ganador · 📈 45+ prometedor · 🧪 25+ en testeo.</li>
+    </ul>
+  </details>
+</section>
+<script src="popup.js"></script>
+</body>
+</html>
