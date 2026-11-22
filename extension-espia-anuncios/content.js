@@ -3,9 +3,7 @@
 (function () {
   if (window.__espiaAnuncios) return;
   window.__espiaAnuncios = true;
-  const { extraerDeTexto, puntuar, nivel, detectarDigital, dominioDeUrl } = window.EA;
-
-  const RE_ID = /(?:ID de la biblioteca|Library ID|ID da biblioteca)\s*:?\s*\d{6,}/gi;
+  const { extraerDeTexto, puntuar, nivel, detectarDigital, dominioDeUrl, RE_ID, RE_ID_G } = window.EA;
   const anuncios = new Map(); // id -> datos
   let guardados = {};
   let filtros = { minDias: 0, minVar: 1, soloDigital: false, soloActivos: false, orden: "puntaje" };
@@ -13,7 +11,7 @@
 
   // ---------- Detección de tarjetas ----------
   function contarIds(el) {
-    const m = (el.innerText || "").match(RE_ID);
+    const m = (el.innerText || "").match(RE_ID_G);
     return m ? m.length : 0;
   }
 
@@ -21,7 +19,7 @@
   // que todavía tenga un solo anuncio: esa es la tarjeta.
   function tarjetaDesde(nodo) {
     let el = nodo;
-    while (el.parentElement && el.parentElement !== document.body && contarIds(el.parentElement) === 1) {
+    while (el.parentElement && el.parentElement !== document.body && el.parentElement !== document.documentElement && contarIds(el.parentElement) === 1) {
       el = el.parentElement;
     }
     return el;
@@ -31,13 +29,17 @@
     const res = [];
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode: (n) =>
-        /ID de la biblioteca|Library ID|ID da biblioteca/i.test(n.nodeValue)
+        /\d{10,}/.test(n.nodeValue) && !/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA|TEMPLATE)$/.test(n.parentElement?.tagName)
           ? NodeFilter.FILTER_ACCEPT
           : NodeFilter.FILTER_REJECT,
     });
+    const corto = (el) => (el.innerText || "").length < 200 && RE_ID.test(el.innerText || "");
     while (w.nextNode()) {
-      const el = w.currentNode.parentElement;
-      if (el && !el.closest("#ea-panel")) res.push(el);
+      // El rótulo y el número pueden estar en elementos distintos: se sube
+      // hasta 3 niveles buscando un texto corto del tipo "rótulo: número".
+      let el = w.currentNode.parentElement;
+      for (let i = 0; el && i < 3 && !corto(el); i++) el = el.parentElement;
+      if (el && corto(el) && !el.closest("#ea-panel")) res.push(el);
     }
     return res;
   }
@@ -197,6 +199,7 @@
         <button data-a="scroll">▶ Cargar más (auto‑scroll)</button>
         <button data-a="csv">⬇ Exportar CSV</button>
         <button data-a="rescan">↻ Re‑escanear</button>
+        <button data-a="diag" title="Copia el texto de la página para enviarlo y ajustar la detección">🩺 Copiar diagnóstico</button>
       </div>
       <ol class="ea-lista"></ol>
     </div>`;
@@ -215,6 +218,23 @@
   panel.querySelector('[data-a="csv"]').onclick = () =>
     descargarCSV([...anuncios.values()].filter(pasaFiltros).sort(comparar), "anuncios-biblioteca");
   panel.querySelector('[data-a="rescan"]').onclick = escanear;
+  panel.querySelector('[data-a="diag"]').onclick = async (e) => {
+    const texto = [
+      "URL: " + location.href,
+      "Detectados: " + anuncios.size,
+      "Nodos con ID: " + nodosConId().length,
+      "---",
+      (document.querySelector('[role="main"]') || document.body).innerText.slice(0, 4000),
+    ].join("\n");
+    try {
+      await navigator.clipboard.writeText(texto);
+      e.target.textContent = "✔ Copiado: pegalo en el chat";
+    } catch {
+      console.log(texto);
+      e.target.textContent = "No se pudo copiar (ver consola F12)";
+    }
+    setTimeout(() => (e.target.textContent = "🩺 Copiar diagnóstico"), 3000);
+  };
   panel.querySelector('[data-a="scroll"]').onclick = (e) => {
     if (autoScroll) {
       clearInterval(autoScroll);

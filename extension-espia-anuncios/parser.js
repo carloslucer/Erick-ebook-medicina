@@ -34,6 +34,12 @@
 
   const DIA = 86400000;
 
+  // ID del anuncio: "ID de la biblioteca: 123…", "Identificador de la biblioteca: 123…",
+  // "Library ID: 123…", o en última instancia ": " seguido de un número largo.
+  const RE_ID = /(?:\bID\b|Identificador|Identifica[cç][aã]o)[^\n:]{0,40}:\s*(\d{10,20})|:\s*(\d{14,20})(?!\d)/i;
+  const RE_ID_G = new RegExp(RE_ID.source, "gi");
+  const FECHA = "\\d{1,2}\\s+(?:de\\s+)?[A-Za-zÀ-ÿ]{3,10}\\.?(?:\\s+de)?\\s+\\d{4}|[A-Za-z]{3,10}\\.?\\s+\\d{1,2},\\s+\\d{4}|\\d{1,2}/\\d{1,2}/\\d{4}";
+
   const PALABRAS_DIGITAL = [
     "ebook", "e-book", "libro digital", "pdf", "guia", "guía", "curso", "clase",
     "masterclass", "taller", "plantilla", "template", "metodo", "método",
@@ -60,24 +66,23 @@
     const out = {
       id: null, activo: null, inicio: null, fin: null, dias: null, variaciones: 1,
     };
-    let m = texto.match(/(?:ID de la biblioteca|Library ID|ID da biblioteca)\s*:?\s*(\d{6,})/i);
-    if (m) out.id = m[1];
+    let m = texto.match(RE_ID);
+    if (m) out.id = m[1] || m[2];
 
-    if (/\bInactiv[oa]\b|\bInactive\b/i.test(texto)) out.activo = false;
-    else if (/\bActiv[oa]\b|\bActive\b/i.test(texto)) out.activo = true;
+    if (/\bInactiv[oa]\b|\bInactive\b|\bNo activ[oa]\b/i.test(texto)) out.activo = false;
+    else if (/\bActiv[oa]\b|\bActive\b|\bEn circulaci[oó]n\b/i.test(texto)) out.activo = true;
 
-    // Anuncio activo: "Comenzó a circular el 12 nov 2026"
-    m = texto.match(
-      /(?:Comenz[oó] a circular el|Started running on|Come[cç]ou a ser veiculado em|En circulaci[oó]n desde el)\s+([^\n·]+?\d{4})/i
-    );
-    if (m) out.inicio = parseFecha(m[1]);
-
-    // Anuncio inactivo: "12 nov 2026 - 20 nov 2026"
-    if (!out.inicio) {
-      m = texto.match(/(\d{1,2}\s+(?:de\s+)?[A-Za-zçé.]+\s+(?:de\s+)?\d{4}|[A-Za-z]+\.?\s+\d{1,2},\s+\d{4})\s*[-–]\s*(\d{1,2}\s+(?:de\s+)?[A-Za-zçé.]+\s+(?:de\s+)?\d{4}|[A-Za-z]+\.?\s+\d{1,2},\s+\d{4})/);
-      if (m) {
-        out.inicio = parseFecha(m[1]);
-        out.fin = parseFecha(m[2]);
+    // No depende de la frase exacta ("Comenzó a circular", "Empezó a publicarse",
+    // "Started running"...): toma las fechas que aparezcan en la tarjeta.
+    // Si hay un rango "12 nov 2026 - 20 nov 2026" es un anuncio que ya terminó.
+    const rango = texto.match(new RegExp(`(${FECHA})\\s*[-–—]\\s*(${FECHA})`, "i"));
+    if (rango && parseFecha(rango[1]) && parseFecha(rango[2])) {
+      out.inicio = parseFecha(rango[1]);
+      out.fin = parseFecha(rango[2]);
+    } else {
+      for (const f of texto.match(new RegExp(FECHA, "gi")) || []) {
+        const d = parseFecha(f);
+        if (d) { out.inicio = d; break; }
       }
     }
     if (out.inicio) {
@@ -86,7 +91,7 @@
     }
 
     // "3 anuncios usan este contenido y texto" / "3 ads use this creative and text"
-    m = texto.match(/(\d+)\s+(?:anuncios usan|ads use|an[uú]ncios usam)/i);
+    m = texto.match(/(\d+)\s+(?:anuncios|ads|an[uú]ncios)\s+(?:usan|utilizan|use|usam|utilizam)/i);
     if (m) out.variaciones = +m[1];
     return out;
   }
@@ -142,5 +147,5 @@
     }
   }
 
-  root.EA = { parseFecha, extraerDeTexto, puntuar, nivel, detectarDigital, dominioDeUrl, norm };
+  root.EA = { RE_ID, RE_ID_G, parseFecha, extraerDeTexto, puntuar, nivel, detectarDigital, dominioDeUrl, norm };
 })(typeof window !== "undefined" ? window : globalThis);
